@@ -25,6 +25,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_lints: ^1.0.4
+
   build_runner:
   freezed: ^0.14.5
   json_serializable: ^5.0.0

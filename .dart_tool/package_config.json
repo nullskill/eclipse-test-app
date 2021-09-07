@@ -176,6 +176,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_lints",
+      "rootUri": "file:///Users/ilya/dev/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-1.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_test",
       "rootUri": "file:///Users/ilya/dev/flutter/packages/flutter_test",
       "packageUri": "lib/",
@@ -244,6 +250,12 @@
     {
       "name": "json_serializable",
       "rootUri": "file:///Users/ilya/dev/flutter/.pub-cache/hosted/pub.dartlang.org/json_serializable-5.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "lints",
+      "rootUri": "file:///Users/ilya/dev/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -422,7 +434,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-09-07T09:12:41.832168Z",
+  "generated": "2021-09-07T09:55:35.853008Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }
