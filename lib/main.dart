@@ -1,5 +1,6 @@
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
+import 'package:eclipse_test_app/screen/user_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -84,16 +85,26 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: state.users.length,
                 itemBuilder: (context, index) {
                   final user = state.users[index];
-                  return Card(
-                    margin: const EdgeInsets.all(8),
-                    child: SizedBox(
-                      height: 60,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            Text('@${user.userName} - ${user.name}'),
-                          ],
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => UserDetailsScreen(userId: user.id),
+                        ),
+                      );
+                    },
+                    child: Card(
+                      margin: const EdgeInsets.all(8),
+                      child: SizedBox(
+                        height: 60,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: [
+                              Text('@${user.userName} - ${user.name}'),
+                            ],
+                          ),
                         ),
                       ),
                     ),
