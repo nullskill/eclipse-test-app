@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
 import 'package:eclipse_test_app/screen/user_details_screen.dart';
@@ -22,6 +23,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<UsersBloc>(
           create: (BuildContext context) => UsersBloc(
+            context.read<Repository>(),
+          ),
+        ),
+        BlocProvider<UserDetailsBloc>(
+          create: (BuildContext context) => UserDetailsBloc(
             context.read<Repository>(),
           ),
         ),
@@ -55,20 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     BlocProvider.of<UsersBloc>(context, listen: false)
         .add(UsersEvent.fetchUsers());
-    // getUserDetails();
   }
-
-  // Future<void> getUsers() async {
-  //   final users = await Repository().getUsers();
-
-  //   print(users);
-  // }
-
-  // Future<void> getUserDetails() async {
-  //   final user = await Repository().getUserDetails(1);
-
-  //   print(user);
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -77,20 +70,23 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: BlocBuilder<UsersBloc, UsersState>(
-        builder: (context, state) {
+        builder: (_, state) {
           if (state is FetchedUsersState) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListView.builder(
                 itemCount: state.users.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (_, index) {
                   final user = state.users[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => UserDetailsScreen(userId: user.id),
+                          builder: (_) => UserDetailsScreen(
+                            userId: user.id,
+                            userName: user.userName,
+                          ),
                         ),
                       );
                     },
