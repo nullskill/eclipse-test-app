@@ -31,6 +31,25 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+
+  //   getUserDetails();
+  // }
+
+  // Future<void> getUsers() async {
+  //   final users = await Repository().getUsers();
+
+  //   print(users);
+  // }
+
+  // Future<void> getUserDetails() async {
+  //   final user = await Repository().getUserDetails(1);
+
+  //   print(user);
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

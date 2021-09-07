@@ -1,17 +1,27 @@
 import 'package:eclipse_test_app/model/user/user.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-part 'user_response.freezed.dart';
-part 'user_response.g.dart';
+@immutable
+class UsersResponse {
+  final List<User> users;
+  final String error;
 
-@freezed
-class UserResponse with _$UserResponse {
-  const factory UserResponse({
-    required List<User> users,
-    required String error,
-  }) = _UserResponse;
-  factory UserResponse.withError(String errorValue) =>
-      UserResponse(users: [], error: errorValue);
-  factory UserResponse.fromJson(Map<String, dynamic> json) =>
-      _$UserResponseFromJson(json);
+  UsersResponse({
+    required this.users,
+    required this.error,
+  });
+
+  factory UsersResponse.fromJson(List<dynamic> list) {
+    return UsersResponse(
+      users: list.map((e) => User.fromJson(e)).toList(),
+      error: '',
+    );
+  }
+
+  UsersResponse.withError(String errorValue)
+      : users = [],
+        error = errorValue;
+
+  @override
+  String toString() => 'UsersResponse(users: $users, error: $error)';
 }

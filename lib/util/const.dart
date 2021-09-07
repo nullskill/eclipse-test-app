@@ -1,1 +1,1 @@
-const apiUrl = 'https://jsonplaceholder.typicode.com/';
+const apiUrl = 'https://jsonplaceholder.typicode.com';

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:eclipse_test_app/model/user/user.dart';
 import 'package:eclipse_test_app/model/user/user_response.dart';
 import 'package:eclipse_test_app/util/const.dart';
-import 'package:flutter/foundation.dart';
 
 /// The Jsonplaceholder repository for managing API calls
 /// API docs: https://jsonplaceholder.typicode.com/
@@ -14,16 +14,27 @@ class Repository {
   final photosUrl = '$apiUrl/photos';
   final commentsUrl = '$apiUrl/comments';
 
-  /// Get the users
-  Future<UserResponse> getUsers() async {
+  Future<UsersResponse> getUsers() async {
     try {
-      Response response = await _dio.get(usersUrl);
+      final response = await _dio.get(usersUrl);
 
-      return UserResponse.fromJson(response.data);
-    } catch (error, stackTrace) {
-      debugPrint('Exception occured: $error stackTrace: $stackTrace');
+      return UsersResponse.fromJson(response.data);
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
 
-      return UserResponse.withError('$error');
+      return UsersResponse.withError('$e');
+    }
+  }
+
+  Future<User?> getUserDetails(int id) async {
+    try {
+      final response = await _dio.get('$usersUrl/$id');
+
+      return User.fromJson(response.data);
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
+
+      return null;
     }
   }
 }
