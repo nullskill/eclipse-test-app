@@ -14,6 +14,7 @@ class Repository {
   final photosUrl = '$apiUrl/photos';
   final commentsUrl = '$apiUrl/comments';
 
+  /// Get all users
   Future<UsersResponse> getUsers() async {
     try {
       final response = await _dio.get(usersUrl);
@@ -26,6 +27,7 @@ class Repository {
     }
   }
 
+  /// Get user details by [id]
   Future<User?> getUserDetails(int id) async {
     try {
       final response = await _dio.get('$usersUrl/$id');
