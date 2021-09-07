@@ -5,15 +5,18 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  static const appTitle = 'Eclipse test app';
+  static const title = 'User list';
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: title,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: appTitle),
     );
   }
 }
@@ -34,8 +37,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body:
-          SizedBox(), // This trailing comma makes auto-formatting nicer for build methods.
+      body: ListView.builder(
+        itemCount: 0,
+        itemBuilder: (context, index) {
+          return ListTile();
+        },
+      ),
     );
   }
 }
