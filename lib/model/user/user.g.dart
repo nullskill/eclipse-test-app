@@ -22,10 +22,10 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'name': instance.name,
       'username': instance.userName,
       'email': instance.email,
-      'address': instance.address,
+      'address': instance.address.toJson(),
       'phone': instance.phone,
       'website': instance.website,
-      'company': instance.company,
+      'company': instance.company.toJson(),
     };
 
 _$_Address _$$_AddressFromJson(Map<String, dynamic> json) => _$_Address(
@@ -42,7 +42,7 @@ Map<String, dynamic> _$$_AddressToJson(_$_Address instance) =>
       'suite': instance.suite,
       'city': instance.city,
       'zipcode': instance.zipCode,
-      'geo': instance.geo,
+      'geo': instance.geo.toJson(),
     };
 
 _$_Geo _$$_GeoFromJson(Map<String, dynamic> json) => _$_Geo(

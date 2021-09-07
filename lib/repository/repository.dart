@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:eclipse_test_app/model/user/user.dart';
-import 'package:eclipse_test_app/model/user/user_response.dart';
+import 'package:eclipse_test_app/model/user/users_response.dart';
 import 'package:eclipse_test_app/util/const.dart';
 
 /// The Jsonplaceholder repository for managing API calls
