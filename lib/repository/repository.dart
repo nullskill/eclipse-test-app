@@ -73,7 +73,7 @@ class Repository {
   /// Get all album details by [id]
   Future<Album?> getAlbumDetails(int id) async {
     try {
-      final response = await _dio.get('$albumsUrl/id');
+      final response = await _dio.get('$albumsUrl/$id');
 
       return Album.fromJson(response.data);
     } on DioError catch (e) {

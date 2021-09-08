@@ -244,9 +244,9 @@ class _$AlbumDetailsStateTearOff {
     return const LoadingAlbumDetailsState();
   }
 
-  FetchedAlbumDetailsState fetchedAlbumDetails(Album AlbumDetails) {
+  FetchedAlbumDetailsState fetchedAlbumDetails(AlbumWithPhotos albumDetails) {
     return FetchedAlbumDetailsState(
-      AlbumDetails,
+      albumDetails,
     );
   }
 
@@ -266,7 +266,7 @@ mixin _$AlbumDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbumDetails,
-    required TResult Function(Album AlbumDetails) fetchedAlbumDetails,
+    required TResult Function(AlbumWithPhotos albumDetails) fetchedAlbumDetails,
     required TResult Function(String error) errorFetchAlbumDetails,
   }) =>
       throw _privateConstructorUsedError;
@@ -274,7 +274,7 @@ mixin _$AlbumDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
   }) =>
       throw _privateConstructorUsedError;
@@ -282,7 +282,7 @@ mixin _$AlbumDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
     required TResult orElse(),
   }) =>
@@ -377,7 +377,7 @@ class _$InitialAlbumDetailsState implements InitialAlbumDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbumDetails,
-    required TResult Function(Album AlbumDetails) fetchedAlbumDetails,
+    required TResult Function(AlbumWithPhotos albumDetails) fetchedAlbumDetails,
     required TResult Function(String error) errorFetchAlbumDetails,
   }) {
     return initial();
@@ -388,7 +388,7 @@ class _$InitialAlbumDetailsState implements InitialAlbumDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
   }) {
     return initial?.call();
@@ -399,7 +399,7 @@ class _$InitialAlbumDetailsState implements InitialAlbumDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
     required TResult orElse(),
   }) {
@@ -497,7 +497,7 @@ class _$LoadingAlbumDetailsState implements LoadingAlbumDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbumDetails,
-    required TResult Function(Album AlbumDetails) fetchedAlbumDetails,
+    required TResult Function(AlbumWithPhotos albumDetails) fetchedAlbumDetails,
     required TResult Function(String error) errorFetchAlbumDetails,
   }) {
     return loadingAlbumDetails();
@@ -508,7 +508,7 @@ class _$LoadingAlbumDetailsState implements LoadingAlbumDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
   }) {
     return loadingAlbumDetails?.call();
@@ -519,7 +519,7 @@ class _$LoadingAlbumDetailsState implements LoadingAlbumDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
     required TResult orElse(),
   }) {
@@ -579,9 +579,7 @@ abstract class $FetchedAlbumDetailsStateCopyWith<$Res> {
   factory $FetchedAlbumDetailsStateCopyWith(FetchedAlbumDetailsState value,
           $Res Function(FetchedAlbumDetailsState) then) =
       _$FetchedAlbumDetailsStateCopyWithImpl<$Res>;
-  $Res call({Album AlbumDetails});
-
-  $AlbumCopyWith<$Res> get AlbumDetails;
+  $Res call({AlbumWithPhotos albumDetails});
 }
 
 /// @nodoc
@@ -598,49 +596,42 @@ class _$FetchedAlbumDetailsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? AlbumDetails = freezed,
+    Object? albumDetails = freezed,
   }) {
     return _then(FetchedAlbumDetailsState(
-      AlbumDetails == freezed
-          ? _value.AlbumDetails
-          : AlbumDetails // ignore: cast_nullable_to_non_nullable
-              as Album,
+      albumDetails == freezed
+          ? _value.albumDetails
+          : albumDetails // ignore: cast_nullable_to_non_nullable
+              as AlbumWithPhotos,
     ));
-  }
-
-  @override
-  $AlbumCopyWith<$Res> get AlbumDetails {
-    return $AlbumCopyWith<$Res>(_value.AlbumDetails, (value) {
-      return _then(_value.copyWith(AlbumDetails: value));
-    });
   }
 }
 
 /// @nodoc
 
 class _$FetchedAlbumDetailsState implements FetchedAlbumDetailsState {
-  const _$FetchedAlbumDetailsState(this.AlbumDetails);
+  const _$FetchedAlbumDetailsState(this.albumDetails);
 
   @override
-  final Album AlbumDetails;
+  final AlbumWithPhotos albumDetails;
 
   @override
   String toString() {
-    return 'AlbumDetailsState.fetchedAlbumDetails(AlbumDetails: $AlbumDetails)';
+    return 'AlbumDetailsState.fetchedAlbumDetails(albumDetails: $albumDetails)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is FetchedAlbumDetailsState &&
-            (identical(other.AlbumDetails, AlbumDetails) ||
+            (identical(other.albumDetails, albumDetails) ||
                 const DeepCollectionEquality()
-                    .equals(other.AlbumDetails, AlbumDetails)));
+                    .equals(other.albumDetails, albumDetails)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(AlbumDetails);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(albumDetails);
 
   @JsonKey(ignore: true)
   @override
@@ -653,10 +644,10 @@ class _$FetchedAlbumDetailsState implements FetchedAlbumDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbumDetails,
-    required TResult Function(Album AlbumDetails) fetchedAlbumDetails,
+    required TResult Function(AlbumWithPhotos albumDetails) fetchedAlbumDetails,
     required TResult Function(String error) errorFetchAlbumDetails,
   }) {
-    return fetchedAlbumDetails(AlbumDetails);
+    return fetchedAlbumDetails(albumDetails);
   }
 
   @override
@@ -664,10 +655,10 @@ class _$FetchedAlbumDetailsState implements FetchedAlbumDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
   }) {
-    return fetchedAlbumDetails?.call(AlbumDetails);
+    return fetchedAlbumDetails?.call(albumDetails);
   }
 
   @override
@@ -675,12 +666,12 @@ class _$FetchedAlbumDetailsState implements FetchedAlbumDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
     required TResult orElse(),
   }) {
     if (fetchedAlbumDetails != null) {
-      return fetchedAlbumDetails(AlbumDetails);
+      return fetchedAlbumDetails(albumDetails);
     }
     return orElse();
   }
@@ -727,10 +718,10 @@ class _$FetchedAlbumDetailsState implements FetchedAlbumDetailsState {
 }
 
 abstract class FetchedAlbumDetailsState implements AlbumDetailsState {
-  const factory FetchedAlbumDetailsState(Album AlbumDetails) =
+  const factory FetchedAlbumDetailsState(AlbumWithPhotos albumDetails) =
       _$FetchedAlbumDetailsState;
 
-  Album get AlbumDetails => throw _privateConstructorUsedError;
+  AlbumWithPhotos get albumDetails => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FetchedAlbumDetailsStateCopyWith<FetchedAlbumDetailsState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -806,7 +797,7 @@ class _$ErrorFetchAlbumDetailsState implements ErrorFetchAlbumDetailsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbumDetails,
-    required TResult Function(Album AlbumDetails) fetchedAlbumDetails,
+    required TResult Function(AlbumWithPhotos albumDetails) fetchedAlbumDetails,
     required TResult Function(String error) errorFetchAlbumDetails,
   }) {
     return errorFetchAlbumDetails(error);
@@ -817,7 +808,7 @@ class _$ErrorFetchAlbumDetailsState implements ErrorFetchAlbumDetailsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
   }) {
     return errorFetchAlbumDetails?.call(error);
@@ -828,7 +819,7 @@ class _$ErrorFetchAlbumDetailsState implements ErrorFetchAlbumDetailsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbumDetails,
-    TResult Function(Album AlbumDetails)? fetchedAlbumDetails,
+    TResult Function(AlbumWithPhotos albumDetails)? fetchedAlbumDetails,
     TResult Function(String error)? errorFetchAlbumDetails,
     required TResult orElse(),
   }) {

@@ -1,4 +1,4 @@
-import 'package:eclipse_test_app/model/album/album.dart';
+import 'package:eclipse_test_app/model/album/album_with_photos.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,8 +16,8 @@ class AlbumDetailsState with _$AlbumDetailsState {
   const factory AlbumDetailsState.initial() = InitialAlbumDetailsState;
   const factory AlbumDetailsState.loadingAlbumDetails() =
       LoadingAlbumDetailsState;
-  const factory AlbumDetailsState.fetchedAlbumDetails(Album AlbumDetails) =
-      FetchedAlbumDetailsState;
+  const factory AlbumDetailsState.fetchedAlbumDetails(
+      AlbumWithPhotos albumDetails) = FetchedAlbumDetailsState;
   const factory AlbumDetailsState.errorFetchAlbumDetails(String error) =
       ErrorFetchAlbumDetailsState;
 }
@@ -35,13 +35,16 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
   Stream<AlbumDetailsState> _fetchAlbumDetails(int albumId) async* {
     yield AlbumDetailsState.loadingAlbumDetails();
 
-    final albumDetails = await repo.getAlbumDetails(albumId);
+    final album = await repo.getAlbumDetails(albumId);
 
-    if (albumDetails == null) {
+    if (album == null) {
       yield AlbumDetailsState.errorFetchAlbumDetails(
           'There was an error getting user details');
     } else {
-      yield AlbumDetailsState.fetchedAlbumDetails(albumDetails);
+      final photos = await repo.getAlbumPhotos(album.id);
+
+      yield AlbumDetailsState.fetchedAlbumDetails(
+          AlbumWithPhotos(album, photos.photos.toList()));
     }
   }
 
