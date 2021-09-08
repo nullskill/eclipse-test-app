@@ -1,4 +1,5 @@
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
+import 'package:eclipse_test_app/ui/res/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,11 +18,6 @@ class UserDetailsScreen extends StatefulWidget {
 }
 
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
-  static const labelStyle = TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.bold,
-  );
-  static const valueStyle = TextStyle(fontSize: 16);
   static const sizedBox8 = SizedBox(height: 8);
   static const sizedBox16 = SizedBox(height: 16);
 
@@ -40,10 +36,12 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         title: Text(widget.userName),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: BlocBuilder<UserDetailsBloc, UserDetailsState>(
           builder: (_, state) {
             if (state is FetchedUserDetailsState) {
+              final address = state.userDetails.address;
+
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -65,7 +63,34 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
                   sizedBox16,
                   Text('Company:', style: labelStyle),
                   sizedBox8,
-                  Text(state.userDetails.company.name, style: valueStyle),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Name:', style: sublabelStyle),
+                        sizedBox8,
+                        Text(state.userDetails.company.name, style: valueStyle),
+                        sizedBox16,
+                        Text('bs:', style: sublabelStyle),
+                        sizedBox8,
+                        Text(state.userDetails.company.bs, style: valueStyle),
+                        sizedBox16,
+                        Text('Catch phrase:', style: sublabelStyle),
+                        sizedBox8,
+                        Text(
+                          state.userDetails.company.catchPhrase,
+                          style: valueItalicStyle,
+                        ),
+                      ],
+                    ),
+                  ),
+                  sizedBox16,
+                  Text('Address:', style: labelStyle),
+                  sizedBox8,
+                  Text(
+                      '${address.city}, ${address.street}, ${address.suite}, ${address.zipCode}, ${address.geo}',
+                      style: valueStyle),
                 ],
               );
             } else if (state is ErrorFetchUserDetailsState) {

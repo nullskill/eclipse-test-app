@@ -1,7 +1,8 @@
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
-import 'package:eclipse_test_app/screen/user_details_screen.dart';
+import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:eclipse_test_app/ui/screen/user_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -98,7 +99,10 @@ class _MyHomePageState extends State<MyHomePage> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              Text('@${user.userName} - ${user.name}'),
+                              Text(
+                                '@${user.userName} - ${user.name}',
+                                style: valueStyle,
+                              ),
                             ],
                           ),
                         ),
