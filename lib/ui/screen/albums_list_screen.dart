@@ -2,6 +2,7 @@ import 'package:eclipse_test_app/bloc/album/all_albums_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:eclipse_test_app/ui/screen/album_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -74,8 +75,8 @@ class _UserAlbums extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => AlbumsListScreen(
-                          userId: userId,
+                        builder: (_) => AlbumDetailsScreen(
+                          albumId: album.album.id,
                           userName: userName,
                         ),
                       ),
