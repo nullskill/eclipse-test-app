@@ -4,6 +4,7 @@ import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:eclipse_test_app/ui/screen/albums_list_screen.dart';
 import 'package:eclipse_test_app/ui/screen/posts_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -49,7 +50,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             children: [
               _UserInfo(),
               _UserPosts(userName: widget.userName),
-              _UserAlbums(userName: widget.userName),
+              _UserAlbums(userId: widget.userId, userName: widget.userName),
             ],
           ),
         ),
@@ -205,9 +206,14 @@ class _UserPosts extends StatelessWidget {
 }
 
 class _UserAlbums extends StatelessWidget {
+  final int userId;
   final String userName;
 
-  const _UserAlbums({Key? key, required this.userName}) : super(key: key);
+  const _UserAlbums({
+    Key? key,
+    required this.userId,
+    required this.userName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -228,15 +234,15 @@ class _UserAlbums extends StatelessWidget {
               for (final post in state.albums)
                 GestureDetector(
                   onTap: () {
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (_) => AlbumsListScreen(
-                    //       userId: post.userId,
-                    //       userName: userName,
-                    //     ),
-                    //   ),
-                    // );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => AlbumsListScreen(
+                          userId: userId,
+                          userName: userName,
+                        ),
+                      ),
+                    );
                   },
                   child: Card(
                     margin: const EdgeInsets.all(8),
@@ -252,6 +258,7 @@ class _UserAlbums extends StatelessWidget {
                             const SizedBox(width: 8),
                             Expanded(
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     post.album.title,

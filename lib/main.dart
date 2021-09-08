@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/album/all_albums_bloc.dart';
 import 'package:eclipse_test_app/bloc/album/first_albums_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/all_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
@@ -51,11 +52,11 @@ class MyApp extends StatelessWidget {
             context.read<Repository>(),
           ),
         ),
-        // BlocProvider<AllPostsBloc>(
-        //   create: (BuildContext context) => AllPostsBloc(
-        //     context.read<Repository>(),
-        //   ),
-        // ),
+        BlocProvider<AllAlbumsBloc>(
+          create: (BuildContext context) => AllAlbumsBloc(
+            context.read<Repository>(),
+          ),
+        ),
       ],
       child: MaterialApp(
         title: title,
