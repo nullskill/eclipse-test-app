@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/album/first_albums_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
@@ -30,6 +31,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
         .add(UserDetailsEvent.fetchUserDetails(widget.userId));
     BlocProvider.of<FirstPostsBloc>(context, listen: false)
         .add(FirstPostsEvent.fetchFirstUserPosts(widget.userId));
+    BlocProvider.of<FirstAlbumsBloc>(context, listen: false)
+        .add(FirstAlbumsEvent.fetchFirstUserAlbums(widget.userId));
   }
 
   @override
@@ -46,6 +49,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
             children: [
               _UserInfo(),
               _UserPosts(userName: widget.userName),
+              _UserAlbums(userName: widget.userName),
             ],
           ),
         ),
@@ -191,6 +195,81 @@ class _UserPosts extends StatelessWidget {
             ],
           );
         } else if (state is ErrorFetchFirstPostsState) {
+          return Center(child: Text('${state.error}'));
+        } else {
+          return Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+}
+
+class _UserAlbums extends StatelessWidget {
+  final String userName;
+
+  const _UserAlbums({Key? key, required this.userName}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<FirstAlbumsBloc, FirstAlbumsState>(
+      builder: (_, state) {
+        if (state is FetchedFirstAlbumsState) {
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              sizedBox16,
+              Divider(),
+              sizedBox16,
+              Align(
+                alignment: Alignment.center,
+                child: Text('Albums:', style: labelStyle),
+              ),
+              sizedBox8,
+              for (final post in state.albums)
+                GestureDetector(
+                  onTap: () {
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) => AlbumsListScreen(
+                    //       userId: post.userId,
+                    //       userName: userName,
+                    //     ),
+                    //   ),
+                    // );
+                  },
+                  child: Card(
+                    margin: const EdgeInsets.all(8),
+                    elevation: 2,
+                    child: SizedBox(
+                      height: 80,
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: [
+                            Text(
+                              post.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: sublabelStyle,
+                            ),
+                            sizedBox16,
+                            Text(
+                              post.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: valueStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        } else if (state is ErrorFetchFirstAlbumsState) {
           return Center(child: Text('${state.error}'));
         } else {
           return Center(child: CircularProgressIndicator());

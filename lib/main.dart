@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/album/first_albums_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/all_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
@@ -45,6 +46,16 @@ class MyApp extends StatelessWidget {
             context.read<Repository>(),
           ),
         ),
+        BlocProvider<FirstAlbumsBloc>(
+          create: (BuildContext context) => FirstAlbumsBloc(
+            context.read<Repository>(),
+          ),
+        ),
+        // BlocProvider<AllPostsBloc>(
+        //   create: (BuildContext context) => AllPostsBloc(
+        //     context.read<Repository>(),
+        //   ),
+        // ),
       ],
       child: MaterialApp(
         title: title,
@@ -73,14 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    // getUserPosts();
+    // getUserAlbums();
 
     BlocProvider.of<UsersBloc>(context, listen: false)
         .add(UsersEvent.fetchUsers());
   }
 
-  // Future<void> getUserPosts() async {
-  //   final user = await Repository().getUserPosts(1);
+  // Future<void> getUserAlbums() async {
+  //   final user = await Repository().getUserAlbums(1);
 
   //   print(user);
   // }

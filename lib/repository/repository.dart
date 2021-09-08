@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:eclipse_test_app/model/album/album_response.dart';
 import 'package:eclipse_test_app/model/post/posts_response.dart';
 import 'package:eclipse_test_app/model/user/user.dart';
 import 'package:eclipse_test_app/model/user/users_response.dart';
@@ -51,6 +52,19 @@ class Repository {
       print('Dio exception occured: $e');
 
       return PostsResponse.withError('$e');
+    }
+  }
+
+  /// Get all albums by user [id]
+  Future<AlbumsResponse> getUserAlbums(int id) async {
+    try {
+      final response = await _dio.get('$albumsUrl/?userId=$id');
+
+      return AlbumsResponse.fromJson(response.data);
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
+
+      return AlbumsResponse.withError('$e');
     }
   }
 }
