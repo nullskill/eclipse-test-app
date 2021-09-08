@@ -1,6 +1,8 @@
-import 'package:eclipse_test_app/bloc/post/posts_bloc.dart';
+import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
+import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:eclipse_test_app/ui/screen/posts_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -18,9 +20,6 @@ class UserDetailsScreen extends StatefulWidget {
   _UserDetailsScreenState createState() => _UserDetailsScreenState();
 }
 
-const sizedBox8 = SizedBox(height: 8);
-const sizedBox16 = SizedBox(height: 16);
-
 class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   void initState() {
@@ -28,8 +27,8 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
 
     BlocProvider.of<UserDetailsBloc>(context, listen: false)
         .add(UserDetailsEvent.fetchUserDetails(widget.userId));
-    BlocProvider.of<PostsBloc>(context, listen: false)
-        .add(PostsEvent.fetchUserPosts(widget.userId));
+    BlocProvider.of<FirstPostsBloc>(context, listen: false)
+        .add(FirstPostsEvent.fetchFirstUserPosts(widget.userId));
   }
 
   @override
@@ -131,9 +130,9 @@ class _UserPosts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostsBloc, PostsState>(
+    return BlocBuilder<FirstPostsBloc, FirstPostsState>(
       builder: (_, state) {
-        if (state is FetchedPostsState) {
+        if (state is FetchedFirstPostsState) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -147,18 +146,17 @@ class _UserPosts extends StatelessWidget {
               sizedBox8,
               for (final post in state.posts)
                 GestureDetector(
-                  onTap: () {},
-                  // onTap: () {
-                  //   Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //       builder: (_) => PostsListScreen(
-                  //         userId: post.userId,
-                  //         userName: userName,
-                  //       ),
-                  //     ),
-                  //   );
-                  // },
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => PostsListScreen(
+                          userId: post.userId,
+                          userName: userName,
+                        ),
+                      ),
+                    );
+                  },
                   child: Card(
                     margin: const EdgeInsets.all(8),
                     child: SizedBox(
@@ -189,7 +187,7 @@ class _UserPosts extends StatelessWidget {
                 ),
             ],
           );
-        } else if (state is ErrorFetchPostsState) {
+        } else if (state is ErrorFetchFirstPostsState) {
           return Center(child: Text('${state.error}'));
         } else {
           return Center(child: CircularProgressIndicator());

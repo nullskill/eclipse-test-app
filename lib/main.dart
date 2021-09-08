@@ -1,4 +1,5 @@
-import 'package:eclipse_test_app/bloc/post/posts_bloc.dart';
+import 'package:eclipse_test_app/bloc/post/all_posts_bloc.dart';
+import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
@@ -33,8 +34,13 @@ class MyApp extends StatelessWidget {
             context.read<Repository>(),
           ),
         ),
-        BlocProvider<PostsBloc>(
-          create: (BuildContext context) => PostsBloc(
+        BlocProvider<FirstPostsBloc>(
+          create: (BuildContext context) => FirstPostsBloc(
+            context.read<Repository>(),
+          ),
+        ),
+        BlocProvider<AllPostsBloc>(
+          create: (BuildContext context) => AllPostsBloc(
             context.read<Repository>(),
           ),
         ),

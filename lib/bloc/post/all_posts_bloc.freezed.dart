@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'posts_bloc.dart';
+part of 'all_posts_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$PostsEventTearOff {
-  const _$PostsEventTearOff();
-
-  FetchPostsEvent fetchUserPosts(int userId) {
-    return FetchPostsEvent(
-      userId,
-    );
-  }
+class _$AllPostsEventTearOff {
+  const _$AllPostsEventTearOff();
 
   FetchAllPostsEvent fetchAllUserPosts(int userId) {
     return FetchAllPostsEvent(
@@ -31,71 +25,66 @@ class _$PostsEventTearOff {
 }
 
 /// @nodoc
-const $PostsEvent = _$PostsEventTearOff();
+const $AllPostsEvent = _$AllPostsEventTearOff();
 
 /// @nodoc
-mixin _$PostsEvent {
+mixin _$AllPostsEvent {
   int get userId => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) fetchUserPosts,
     required TResult Function(int userId) fetchAllUserPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
     TResult Function(int userId)? fetchAllUserPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
     TResult Function(int userId)? fetchAllUserPosts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchPostsEvent value) fetchUserPosts,
     required TResult Function(FetchAllPostsEvent value) fetchAllUserPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
     TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
     TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $PostsEventCopyWith<PostsEvent> get copyWith =>
+  $AllPostsEventCopyWith<AllPostsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PostsEventCopyWith<$Res> {
-  factory $PostsEventCopyWith(
-          PostsEvent value, $Res Function(PostsEvent) then) =
-      _$PostsEventCopyWithImpl<$Res>;
+abstract class $AllPostsEventCopyWith<$Res> {
+  factory $AllPostsEventCopyWith(
+          AllPostsEvent value, $Res Function(AllPostsEvent) then) =
+      _$AllPostsEventCopyWithImpl<$Res>;
   $Res call({int userId});
 }
 
 /// @nodoc
-class _$PostsEventCopyWithImpl<$Res> implements $PostsEventCopyWith<$Res> {
-  _$PostsEventCopyWithImpl(this._value, this._then);
+class _$AllPostsEventCopyWithImpl<$Res>
+    implements $AllPostsEventCopyWith<$Res> {
+  _$AllPostsEventCopyWithImpl(this._value, this._then);
 
-  final PostsEvent _value;
+  final AllPostsEvent _value;
   // ignore: unused_field
-  final $Res Function(PostsEvent) _then;
+  final $Res Function(AllPostsEvent) _then;
 
   @override
   $Res call({
@@ -111,145 +100,8 @@ class _$PostsEventCopyWithImpl<$Res> implements $PostsEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class $FetchPostsEventCopyWith<$Res>
-    implements $PostsEventCopyWith<$Res> {
-  factory $FetchPostsEventCopyWith(
-          FetchPostsEvent value, $Res Function(FetchPostsEvent) then) =
-      _$FetchPostsEventCopyWithImpl<$Res>;
-  @override
-  $Res call({int userId});
-}
-
-/// @nodoc
-class _$FetchPostsEventCopyWithImpl<$Res> extends _$PostsEventCopyWithImpl<$Res>
-    implements $FetchPostsEventCopyWith<$Res> {
-  _$FetchPostsEventCopyWithImpl(
-      FetchPostsEvent _value, $Res Function(FetchPostsEvent) _then)
-      : super(_value, (v) => _then(v as FetchPostsEvent));
-
-  @override
-  FetchPostsEvent get _value => super._value as FetchPostsEvent;
-
-  @override
-  $Res call({
-    Object? userId = freezed,
-  }) {
-    return _then(FetchPostsEvent(
-      userId == freezed
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$FetchPostsEvent implements FetchPostsEvent {
-  const _$FetchPostsEvent(this.userId);
-
-  @override
-  final int userId;
-
-  @override
-  String toString() {
-    return 'PostsEvent.fetchUserPosts(userId: $userId)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other is FetchPostsEvent &&
-            (identical(other.userId, userId) ||
-                const DeepCollectionEquality().equals(other.userId, userId)));
-  }
-
-  @override
-  int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(userId);
-
-  @JsonKey(ignore: true)
-  @override
-  $FetchPostsEventCopyWith<FetchPostsEvent> get copyWith =>
-      _$FetchPostsEventCopyWithImpl<FetchPostsEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(int userId) fetchUserPosts,
-    required TResult Function(int userId) fetchAllUserPosts,
-  }) {
-    return fetchUserPosts(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
-    TResult Function(int userId)? fetchAllUserPosts,
-  }) {
-    return fetchUserPosts?.call(userId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
-    TResult Function(int userId)? fetchAllUserPosts,
-    required TResult orElse(),
-  }) {
-    if (fetchUserPosts != null) {
-      return fetchUserPosts(userId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FetchPostsEvent value) fetchUserPosts,
-    required TResult Function(FetchAllPostsEvent value) fetchAllUserPosts,
-  }) {
-    return fetchUserPosts(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
-    TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
-  }) {
-    return fetchUserPosts?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
-    TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
-    required TResult orElse(),
-  }) {
-    if (fetchUserPosts != null) {
-      return fetchUserPosts(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FetchPostsEvent implements PostsEvent {
-  const factory FetchPostsEvent(int userId) = _$FetchPostsEvent;
-
-  @override
-  int get userId => throw _privateConstructorUsedError;
-  @override
-  @JsonKey(ignore: true)
-  $FetchPostsEventCopyWith<FetchPostsEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 abstract class $FetchAllPostsEventCopyWith<$Res>
-    implements $PostsEventCopyWith<$Res> {
+    implements $AllPostsEventCopyWith<$Res> {
   factory $FetchAllPostsEventCopyWith(
           FetchAllPostsEvent value, $Res Function(FetchAllPostsEvent) then) =
       _$FetchAllPostsEventCopyWithImpl<$Res>;
@@ -259,7 +111,7 @@ abstract class $FetchAllPostsEventCopyWith<$Res>
 
 /// @nodoc
 class _$FetchAllPostsEventCopyWithImpl<$Res>
-    extends _$PostsEventCopyWithImpl<$Res>
+    extends _$AllPostsEventCopyWithImpl<$Res>
     implements $FetchAllPostsEventCopyWith<$Res> {
   _$FetchAllPostsEventCopyWithImpl(
       FetchAllPostsEvent _value, $Res Function(FetchAllPostsEvent) _then)
@@ -291,7 +143,7 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
 
   @override
   String toString() {
-    return 'PostsEvent.fetchAllUserPosts(userId: $userId)';
+    return 'AllPostsEvent.fetchAllUserPosts(userId: $userId)';
   }
 
   @override
@@ -314,7 +166,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(int userId) fetchUserPosts,
     required TResult Function(int userId) fetchAllUserPosts,
   }) {
     return fetchAllUserPosts(userId);
@@ -323,7 +174,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
     TResult Function(int userId)? fetchAllUserPosts,
   }) {
     return fetchAllUserPosts?.call(userId);
@@ -332,7 +182,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(int userId)? fetchUserPosts,
     TResult Function(int userId)? fetchAllUserPosts,
     required TResult orElse(),
   }) {
@@ -345,7 +194,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(FetchPostsEvent value) fetchUserPosts,
     required TResult Function(FetchAllPostsEvent value) fetchAllUserPosts,
   }) {
     return fetchAllUserPosts(this);
@@ -354,7 +202,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
     TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
   }) {
     return fetchAllUserPosts?.call(this);
@@ -363,7 +210,6 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(FetchPostsEvent value)? fetchUserPosts,
     TResult Function(FetchAllPostsEvent value)? fetchAllUserPosts,
     required TResult orElse(),
   }) {
@@ -374,7 +220,7 @@ class _$FetchAllPostsEvent implements FetchAllPostsEvent {
   }
 }
 
-abstract class FetchAllPostsEvent implements PostsEvent {
+abstract class FetchAllPostsEvent implements AllPostsEvent {
   const factory FetchAllPostsEvent(int userId) = _$FetchAllPostsEvent;
 
   @override
@@ -386,35 +232,35 @@ abstract class FetchAllPostsEvent implements PostsEvent {
 }
 
 /// @nodoc
-class _$PostsStateTearOff {
-  const _$PostsStateTearOff();
+class _$AllPostsStateTearOff {
+  const _$AllPostsStateTearOff();
 
-  InitialPostsState initial() {
-    return const InitialPostsState();
+  InitialAllPostsState initial() {
+    return const InitialAllPostsState();
   }
 
-  LoadingPostsState loadingPosts() {
-    return const LoadingPostsState();
+  LoadingAllPostsState loadingPosts() {
+    return const LoadingAllPostsState();
   }
 
-  FetchedPostsState fetchedPosts(List<Post> posts) {
-    return FetchedPostsState(
+  FetchedAllPostsState fetchedPosts(List<Post> posts) {
+    return FetchedAllPostsState(
       posts,
     );
   }
 
-  ErrorFetchPostsState errorFetchPosts(String error) {
-    return ErrorFetchPostsState(
+  ErrorFetchAllPostsState errorFetchPosts(String error) {
+    return ErrorFetchAllPostsState(
       error,
     );
   }
 }
 
 /// @nodoc
-const $PostsState = _$PostsStateTearOff();
+const $AllPostsState = _$AllPostsStateTearOff();
 
 /// @nodoc
-mixin _$PostsState {
+mixin _$AllPostsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
@@ -442,79 +288,80 @@ mixin _$PostsState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialPostsState value) initial,
-    required TResult Function(LoadingPostsState value) loadingPosts,
-    required TResult Function(FetchedPostsState value) fetchedPosts,
-    required TResult Function(ErrorFetchPostsState value) errorFetchPosts,
+    required TResult Function(InitialAllPostsState value) initial,
+    required TResult Function(LoadingAllPostsState value) loadingPosts,
+    required TResult Function(FetchedAllPostsState value) fetchedPosts,
+    required TResult Function(ErrorFetchAllPostsState value) errorFetchPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PostsStateCopyWith<$Res> {
-  factory $PostsStateCopyWith(
-          PostsState value, $Res Function(PostsState) then) =
-      _$PostsStateCopyWithImpl<$Res>;
+abstract class $AllPostsStateCopyWith<$Res> {
+  factory $AllPostsStateCopyWith(
+          AllPostsState value, $Res Function(AllPostsState) then) =
+      _$AllPostsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$PostsStateCopyWithImpl<$Res> implements $PostsStateCopyWith<$Res> {
-  _$PostsStateCopyWithImpl(this._value, this._then);
+class _$AllPostsStateCopyWithImpl<$Res>
+    implements $AllPostsStateCopyWith<$Res> {
+  _$AllPostsStateCopyWithImpl(this._value, this._then);
 
-  final PostsState _value;
+  final AllPostsState _value;
   // ignore: unused_field
-  final $Res Function(PostsState) _then;
+  final $Res Function(AllPostsState) _then;
 }
 
 /// @nodoc
-abstract class $InitialPostsStateCopyWith<$Res> {
-  factory $InitialPostsStateCopyWith(
-          InitialPostsState value, $Res Function(InitialPostsState) then) =
-      _$InitialPostsStateCopyWithImpl<$Res>;
+abstract class $InitialAllPostsStateCopyWith<$Res> {
+  factory $InitialAllPostsStateCopyWith(InitialAllPostsState value,
+          $Res Function(InitialAllPostsState) then) =
+      _$InitialAllPostsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$InitialPostsStateCopyWithImpl<$Res>
-    extends _$PostsStateCopyWithImpl<$Res>
-    implements $InitialPostsStateCopyWith<$Res> {
-  _$InitialPostsStateCopyWithImpl(
-      InitialPostsState _value, $Res Function(InitialPostsState) _then)
-      : super(_value, (v) => _then(v as InitialPostsState));
+class _$InitialAllPostsStateCopyWithImpl<$Res>
+    extends _$AllPostsStateCopyWithImpl<$Res>
+    implements $InitialAllPostsStateCopyWith<$Res> {
+  _$InitialAllPostsStateCopyWithImpl(
+      InitialAllPostsState _value, $Res Function(InitialAllPostsState) _then)
+      : super(_value, (v) => _then(v as InitialAllPostsState));
 
   @override
-  InitialPostsState get _value => super._value as InitialPostsState;
+  InitialAllPostsState get _value => super._value as InitialAllPostsState;
 }
 
 /// @nodoc
 
-class _$InitialPostsState implements InitialPostsState {
-  const _$InitialPostsState();
+class _$InitialAllPostsState implements InitialAllPostsState {
+  const _$InitialAllPostsState();
 
   @override
   String toString() {
-    return 'PostsState.initial()';
+    return 'AllPostsState.initial()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is InitialPostsState);
+    return identical(this, other) || (other is InitialAllPostsState);
   }
 
   @override
@@ -560,10 +407,10 @@ class _$InitialPostsState implements InitialPostsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialPostsState value) initial,
-    required TResult Function(LoadingPostsState value) loadingPosts,
-    required TResult Function(FetchedPostsState value) fetchedPosts,
-    required TResult Function(ErrorFetchPostsState value) errorFetchPosts,
+    required TResult Function(InitialAllPostsState value) initial,
+    required TResult Function(LoadingAllPostsState value) loadingPosts,
+    required TResult Function(FetchedAllPostsState value) fetchedPosts,
+    required TResult Function(ErrorFetchAllPostsState value) errorFetchPosts,
   }) {
     return initial(this);
   }
@@ -571,10 +418,10 @@ class _$InitialPostsState implements InitialPostsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
   }) {
     return initial?.call(this);
   }
@@ -582,10 +429,10 @@ class _$InitialPostsState implements InitialPostsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -595,42 +442,42 @@ class _$InitialPostsState implements InitialPostsState {
   }
 }
 
-abstract class InitialPostsState implements PostsState {
-  const factory InitialPostsState() = _$InitialPostsState;
+abstract class InitialAllPostsState implements AllPostsState {
+  const factory InitialAllPostsState() = _$InitialAllPostsState;
 }
 
 /// @nodoc
-abstract class $LoadingPostsStateCopyWith<$Res> {
-  factory $LoadingPostsStateCopyWith(
-          LoadingPostsState value, $Res Function(LoadingPostsState) then) =
-      _$LoadingPostsStateCopyWithImpl<$Res>;
+abstract class $LoadingAllPostsStateCopyWith<$Res> {
+  factory $LoadingAllPostsStateCopyWith(LoadingAllPostsState value,
+          $Res Function(LoadingAllPostsState) then) =
+      _$LoadingAllPostsStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$LoadingPostsStateCopyWithImpl<$Res>
-    extends _$PostsStateCopyWithImpl<$Res>
-    implements $LoadingPostsStateCopyWith<$Res> {
-  _$LoadingPostsStateCopyWithImpl(
-      LoadingPostsState _value, $Res Function(LoadingPostsState) _then)
-      : super(_value, (v) => _then(v as LoadingPostsState));
+class _$LoadingAllPostsStateCopyWithImpl<$Res>
+    extends _$AllPostsStateCopyWithImpl<$Res>
+    implements $LoadingAllPostsStateCopyWith<$Res> {
+  _$LoadingAllPostsStateCopyWithImpl(
+      LoadingAllPostsState _value, $Res Function(LoadingAllPostsState) _then)
+      : super(_value, (v) => _then(v as LoadingAllPostsState));
 
   @override
-  LoadingPostsState get _value => super._value as LoadingPostsState;
+  LoadingAllPostsState get _value => super._value as LoadingAllPostsState;
 }
 
 /// @nodoc
 
-class _$LoadingPostsState implements LoadingPostsState {
-  const _$LoadingPostsState();
+class _$LoadingAllPostsState implements LoadingAllPostsState {
+  const _$LoadingAllPostsState();
 
   @override
   String toString() {
-    return 'PostsState.loadingPosts()';
+    return 'AllPostsState.loadingPosts()';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is LoadingPostsState);
+    return identical(this, other) || (other is LoadingAllPostsState);
   }
 
   @override
@@ -676,10 +523,10 @@ class _$LoadingPostsState implements LoadingPostsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialPostsState value) initial,
-    required TResult Function(LoadingPostsState value) loadingPosts,
-    required TResult Function(FetchedPostsState value) fetchedPosts,
-    required TResult Function(ErrorFetchPostsState value) errorFetchPosts,
+    required TResult Function(InitialAllPostsState value) initial,
+    required TResult Function(LoadingAllPostsState value) loadingPosts,
+    required TResult Function(FetchedAllPostsState value) fetchedPosts,
+    required TResult Function(ErrorFetchAllPostsState value) errorFetchPosts,
   }) {
     return loadingPosts(this);
   }
@@ -687,10 +534,10 @@ class _$LoadingPostsState implements LoadingPostsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
   }) {
     return loadingPosts?.call(this);
   }
@@ -698,10 +545,10 @@ class _$LoadingPostsState implements LoadingPostsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
     required TResult orElse(),
   }) {
     if (loadingPosts != null) {
@@ -711,34 +558,34 @@ class _$LoadingPostsState implements LoadingPostsState {
   }
 }
 
-abstract class LoadingPostsState implements PostsState {
-  const factory LoadingPostsState() = _$LoadingPostsState;
+abstract class LoadingAllPostsState implements AllPostsState {
+  const factory LoadingAllPostsState() = _$LoadingAllPostsState;
 }
 
 /// @nodoc
-abstract class $FetchedPostsStateCopyWith<$Res> {
-  factory $FetchedPostsStateCopyWith(
-          FetchedPostsState value, $Res Function(FetchedPostsState) then) =
-      _$FetchedPostsStateCopyWithImpl<$Res>;
+abstract class $FetchedAllPostsStateCopyWith<$Res> {
+  factory $FetchedAllPostsStateCopyWith(FetchedAllPostsState value,
+          $Res Function(FetchedAllPostsState) then) =
+      _$FetchedAllPostsStateCopyWithImpl<$Res>;
   $Res call({List<Post> posts});
 }
 
 /// @nodoc
-class _$FetchedPostsStateCopyWithImpl<$Res>
-    extends _$PostsStateCopyWithImpl<$Res>
-    implements $FetchedPostsStateCopyWith<$Res> {
-  _$FetchedPostsStateCopyWithImpl(
-      FetchedPostsState _value, $Res Function(FetchedPostsState) _then)
-      : super(_value, (v) => _then(v as FetchedPostsState));
+class _$FetchedAllPostsStateCopyWithImpl<$Res>
+    extends _$AllPostsStateCopyWithImpl<$Res>
+    implements $FetchedAllPostsStateCopyWith<$Res> {
+  _$FetchedAllPostsStateCopyWithImpl(
+      FetchedAllPostsState _value, $Res Function(FetchedAllPostsState) _then)
+      : super(_value, (v) => _then(v as FetchedAllPostsState));
 
   @override
-  FetchedPostsState get _value => super._value as FetchedPostsState;
+  FetchedAllPostsState get _value => super._value as FetchedAllPostsState;
 
   @override
   $Res call({
     Object? posts = freezed,
   }) {
-    return _then(FetchedPostsState(
+    return _then(FetchedAllPostsState(
       posts == freezed
           ? _value.posts
           : posts // ignore: cast_nullable_to_non_nullable
@@ -749,21 +596,21 @@ class _$FetchedPostsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchedPostsState implements FetchedPostsState {
-  const _$FetchedPostsState(this.posts);
+class _$FetchedAllPostsState implements FetchedAllPostsState {
+  const _$FetchedAllPostsState(this.posts);
 
   @override
   final List<Post> posts;
 
   @override
   String toString() {
-    return 'PostsState.fetchedPosts(posts: $posts)';
+    return 'AllPostsState.fetchedPosts(posts: $posts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FetchedPostsState &&
+        (other is FetchedAllPostsState &&
             (identical(other.posts, posts) ||
                 const DeepCollectionEquality().equals(other.posts, posts)));
   }
@@ -774,8 +621,9 @@ class _$FetchedPostsState implements FetchedPostsState {
 
   @JsonKey(ignore: true)
   @override
-  $FetchedPostsStateCopyWith<FetchedPostsState> get copyWith =>
-      _$FetchedPostsStateCopyWithImpl<FetchedPostsState>(this, _$identity);
+  $FetchedAllPostsStateCopyWith<FetchedAllPostsState> get copyWith =>
+      _$FetchedAllPostsStateCopyWithImpl<FetchedAllPostsState>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -817,10 +665,10 @@ class _$FetchedPostsState implements FetchedPostsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialPostsState value) initial,
-    required TResult Function(LoadingPostsState value) loadingPosts,
-    required TResult Function(FetchedPostsState value) fetchedPosts,
-    required TResult Function(ErrorFetchPostsState value) errorFetchPosts,
+    required TResult Function(InitialAllPostsState value) initial,
+    required TResult Function(LoadingAllPostsState value) loadingPosts,
+    required TResult Function(FetchedAllPostsState value) fetchedPosts,
+    required TResult Function(ErrorFetchAllPostsState value) errorFetchPosts,
   }) {
     return fetchedPosts(this);
   }
@@ -828,10 +676,10 @@ class _$FetchedPostsState implements FetchedPostsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
   }) {
     return fetchedPosts?.call(this);
   }
@@ -839,10 +687,10 @@ class _$FetchedPostsState implements FetchedPostsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
     required TResult orElse(),
   }) {
     if (fetchedPosts != null) {
@@ -852,39 +700,39 @@ class _$FetchedPostsState implements FetchedPostsState {
   }
 }
 
-abstract class FetchedPostsState implements PostsState {
-  const factory FetchedPostsState(List<Post> posts) = _$FetchedPostsState;
+abstract class FetchedAllPostsState implements AllPostsState {
+  const factory FetchedAllPostsState(List<Post> posts) = _$FetchedAllPostsState;
 
   List<Post> get posts => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FetchedPostsStateCopyWith<FetchedPostsState> get copyWith =>
+  $FetchedAllPostsStateCopyWith<FetchedAllPostsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorFetchPostsStateCopyWith<$Res> {
-  factory $ErrorFetchPostsStateCopyWith(ErrorFetchPostsState value,
-          $Res Function(ErrorFetchPostsState) then) =
-      _$ErrorFetchPostsStateCopyWithImpl<$Res>;
+abstract class $ErrorFetchAllPostsStateCopyWith<$Res> {
+  factory $ErrorFetchAllPostsStateCopyWith(ErrorFetchAllPostsState value,
+          $Res Function(ErrorFetchAllPostsState) then) =
+      _$ErrorFetchAllPostsStateCopyWithImpl<$Res>;
   $Res call({String error});
 }
 
 /// @nodoc
-class _$ErrorFetchPostsStateCopyWithImpl<$Res>
-    extends _$PostsStateCopyWithImpl<$Res>
-    implements $ErrorFetchPostsStateCopyWith<$Res> {
-  _$ErrorFetchPostsStateCopyWithImpl(
-      ErrorFetchPostsState _value, $Res Function(ErrorFetchPostsState) _then)
-      : super(_value, (v) => _then(v as ErrorFetchPostsState));
+class _$ErrorFetchAllPostsStateCopyWithImpl<$Res>
+    extends _$AllPostsStateCopyWithImpl<$Res>
+    implements $ErrorFetchAllPostsStateCopyWith<$Res> {
+  _$ErrorFetchAllPostsStateCopyWithImpl(ErrorFetchAllPostsState _value,
+      $Res Function(ErrorFetchAllPostsState) _then)
+      : super(_value, (v) => _then(v as ErrorFetchAllPostsState));
 
   @override
-  ErrorFetchPostsState get _value => super._value as ErrorFetchPostsState;
+  ErrorFetchAllPostsState get _value => super._value as ErrorFetchAllPostsState;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(ErrorFetchPostsState(
+    return _then(ErrorFetchAllPostsState(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -895,21 +743,21 @@ class _$ErrorFetchPostsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorFetchPostsState implements ErrorFetchPostsState {
-  const _$ErrorFetchPostsState(this.error);
+class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
+  const _$ErrorFetchAllPostsState(this.error);
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'PostsState.errorFetchPosts(error: $error)';
+    return 'AllPostsState.errorFetchPosts(error: $error)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorFetchPostsState &&
+        (other is ErrorFetchAllPostsState &&
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
@@ -920,8 +768,8 @@ class _$ErrorFetchPostsState implements ErrorFetchPostsState {
 
   @JsonKey(ignore: true)
   @override
-  $ErrorFetchPostsStateCopyWith<ErrorFetchPostsState> get copyWith =>
-      _$ErrorFetchPostsStateCopyWithImpl<ErrorFetchPostsState>(
+  $ErrorFetchAllPostsStateCopyWith<ErrorFetchAllPostsState> get copyWith =>
+      _$ErrorFetchAllPostsStateCopyWithImpl<ErrorFetchAllPostsState>(
           this, _$identity);
 
   @override
@@ -964,10 +812,10 @@ class _$ErrorFetchPostsState implements ErrorFetchPostsState {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(InitialPostsState value) initial,
-    required TResult Function(LoadingPostsState value) loadingPosts,
-    required TResult Function(FetchedPostsState value) fetchedPosts,
-    required TResult Function(ErrorFetchPostsState value) errorFetchPosts,
+    required TResult Function(InitialAllPostsState value) initial,
+    required TResult Function(LoadingAllPostsState value) loadingPosts,
+    required TResult Function(FetchedAllPostsState value) fetchedPosts,
+    required TResult Function(ErrorFetchAllPostsState value) errorFetchPosts,
   }) {
     return errorFetchPosts(this);
   }
@@ -975,10 +823,10 @@ class _$ErrorFetchPostsState implements ErrorFetchPostsState {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
   }) {
     return errorFetchPosts?.call(this);
   }
@@ -986,10 +834,10 @@ class _$ErrorFetchPostsState implements ErrorFetchPostsState {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitialPostsState value)? initial,
-    TResult Function(LoadingPostsState value)? loadingPosts,
-    TResult Function(FetchedPostsState value)? fetchedPosts,
-    TResult Function(ErrorFetchPostsState value)? errorFetchPosts,
+    TResult Function(InitialAllPostsState value)? initial,
+    TResult Function(LoadingAllPostsState value)? loadingPosts,
+    TResult Function(FetchedAllPostsState value)? fetchedPosts,
+    TResult Function(ErrorFetchAllPostsState value)? errorFetchPosts,
     required TResult orElse(),
   }) {
     if (errorFetchPosts != null) {
@@ -999,11 +847,12 @@ class _$ErrorFetchPostsState implements ErrorFetchPostsState {
   }
 }
 
-abstract class ErrorFetchPostsState implements PostsState {
-  const factory ErrorFetchPostsState(String error) = _$ErrorFetchPostsState;
+abstract class ErrorFetchAllPostsState implements AllPostsState {
+  const factory ErrorFetchAllPostsState(String error) =
+      _$ErrorFetchAllPostsState;
 
   String get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorFetchPostsStateCopyWith<ErrorFetchPostsState> get copyWith =>
+  $ErrorFetchAllPostsStateCopyWith<ErrorFetchAllPostsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
