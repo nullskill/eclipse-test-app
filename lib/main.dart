@@ -3,6 +3,7 @@ import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
+import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
 import 'package:eclipse_test_app/ui/screen/user_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -87,6 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -113,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     },
                     child: Card(
                       margin: const EdgeInsets.all(8),
+                      elevation: 2,
                       child: SizedBox(
                         height: 60,
                         child: Padding(

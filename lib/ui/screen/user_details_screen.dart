@@ -1,5 +1,6 @@
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
+import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
 import 'package:eclipse_test_app/ui/screen/posts_list_screen.dart';
@@ -34,6 +35,7 @@ class _UserDetailsScreenState extends State<UserDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
       appBar: AppBar(
         title: Text(widget.userName),
       ),
@@ -159,6 +161,7 @@ class _UserPosts extends StatelessWidget {
                   },
                   child: Card(
                     margin: const EdgeInsets.all(8),
+                    elevation: 2,
                     child: SizedBox(
                       height: 80,
                       width: double.infinity,
