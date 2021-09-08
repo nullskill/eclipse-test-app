@@ -84,14 +84,14 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    // getUserAlbums();
+    // getAlbumPhotos();
 
     BlocProvider.of<UsersBloc>(context, listen: false)
         .add(UsersEvent.fetchUsers());
   }
 
-  // Future<void> getUserAlbums() async {
-  //   final user = await Repository().getUserAlbums(1);
+  // Future<void> getAlbumPhotos() async {
+  //   final user = await Repository().getAlbumPhotos(1);
 
   //   print(user);
   // }

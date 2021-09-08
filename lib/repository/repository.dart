@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:eclipse_test_app/model/album/album_response.dart';
+import 'package:eclipse_test_app/model/album/albums_response.dart';
+import 'package:eclipse_test_app/model/photo/photos_response.dart';
 import 'package:eclipse_test_app/model/post/posts_response.dart';
 import 'package:eclipse_test_app/model/user/user.dart';
 import 'package:eclipse_test_app/model/user/users_response.dart';
@@ -65,6 +66,19 @@ class Repository {
       print('Dio exception occured: $e');
 
       return AlbumsResponse.withError('$e');
+    }
+  }
+
+  /// Get all photos by album [id]
+  Future<PhotosResponse> getAlbumPhotos(int id) async {
+    try {
+      final response = await _dio.get('$photosUrl/?albumId=$id');
+
+      return PhotosResponse.fromJson(response.data);
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
+
+      return PhotosResponse.withError('$e');
     }
   }
 }
