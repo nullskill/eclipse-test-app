@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/post/posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
@@ -32,6 +33,11 @@ class MyApp extends StatelessWidget {
             context.read<Repository>(),
           ),
         ),
+        BlocProvider<PostsBloc>(
+          create: (BuildContext context) => PostsBloc(
+            context.read<Repository>(),
+          ),
+        ),
       ],
       child: MaterialApp(
         title: title,
@@ -60,9 +66,17 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
+    // getUserPosts();
+
     BlocProvider.of<UsersBloc>(context, listen: false)
         .add(UsersEvent.fetchUsers());
   }
+
+  // Future<void> getUserPosts() async {
+  //   final user = await Repository().getUserPosts(1);
+
+  //   print(user);
+  // }
 
   @override
   Widget build(BuildContext context) {
