@@ -99,7 +99,7 @@ class _UserAlbums extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    album.photos.first.title,
+                                    album.album.title,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: sublabelStyle,
