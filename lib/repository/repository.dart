@@ -70,8 +70,8 @@ class Repository {
     }
   }
 
-  /// Get all album by [id]
-  Future<Album?> getAlbum(int id) async {
+  /// Get all album details by [id]
+  Future<Album?> getAlbumDetails(int id) async {
     try {
       final response = await _dio.get('$albumsUrl/id');
 
