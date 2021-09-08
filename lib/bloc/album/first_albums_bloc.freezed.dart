@@ -244,7 +244,7 @@ class _$FirstAlbumsStateTearOff {
     return const LoadingFirstAlbumsState();
   }
 
-  FetchedFirstAlbumsState fetchedAlbums(List<Album> albums) {
+  FetchedFirstAlbumsState fetchedAlbums(List<AlbumWithPhotos> albums) {
     return FetchedFirstAlbumsState(
       albums,
     );
@@ -266,7 +266,7 @@ mixin _$FirstAlbumsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbums,
-    required TResult Function(List<Album> albums) fetchedAlbums,
+    required TResult Function(List<AlbumWithPhotos> albums) fetchedAlbums,
     required TResult Function(String error) errorFetchAlbums,
   }) =>
       throw _privateConstructorUsedError;
@@ -274,7 +274,7 @@ mixin _$FirstAlbumsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
   }) =>
       throw _privateConstructorUsedError;
@@ -282,7 +282,7 @@ mixin _$FirstAlbumsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
     required TResult orElse(),
   }) =>
@@ -374,7 +374,7 @@ class _$InitialFirstAlbumsState implements InitialFirstAlbumsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbums,
-    required TResult Function(List<Album> albums) fetchedAlbums,
+    required TResult Function(List<AlbumWithPhotos> albums) fetchedAlbums,
     required TResult Function(String error) errorFetchAlbums,
   }) {
     return initial();
@@ -385,7 +385,7 @@ class _$InitialFirstAlbumsState implements InitialFirstAlbumsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
   }) {
     return initial?.call();
@@ -396,7 +396,7 @@ class _$InitialFirstAlbumsState implements InitialFirstAlbumsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
     required TResult orElse(),
   }) {
@@ -491,7 +491,7 @@ class _$LoadingFirstAlbumsState implements LoadingFirstAlbumsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbums,
-    required TResult Function(List<Album> albums) fetchedAlbums,
+    required TResult Function(List<AlbumWithPhotos> albums) fetchedAlbums,
     required TResult Function(String error) errorFetchAlbums,
   }) {
     return loadingAlbums();
@@ -502,7 +502,7 @@ class _$LoadingFirstAlbumsState implements LoadingFirstAlbumsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
   }) {
     return loadingAlbums?.call();
@@ -513,7 +513,7 @@ class _$LoadingFirstAlbumsState implements LoadingFirstAlbumsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
     required TResult orElse(),
   }) {
@@ -571,7 +571,7 @@ abstract class $FetchedFirstAlbumsStateCopyWith<$Res> {
   factory $FetchedFirstAlbumsStateCopyWith(FetchedFirstAlbumsState value,
           $Res Function(FetchedFirstAlbumsState) then) =
       _$FetchedFirstAlbumsStateCopyWithImpl<$Res>;
-  $Res call({List<Album> albums});
+  $Res call({List<AlbumWithPhotos> albums});
 }
 
 /// @nodoc
@@ -593,7 +593,7 @@ class _$FetchedFirstAlbumsStateCopyWithImpl<$Res>
       albums == freezed
           ? _value.albums
           : albums // ignore: cast_nullable_to_non_nullable
-              as List<Album>,
+              as List<AlbumWithPhotos>,
     ));
   }
 }
@@ -604,7 +604,7 @@ class _$FetchedFirstAlbumsState implements FetchedFirstAlbumsState {
   const _$FetchedFirstAlbumsState(this.albums);
 
   @override
-  final List<Album> albums;
+  final List<AlbumWithPhotos> albums;
 
   @override
   String toString() {
@@ -634,7 +634,7 @@ class _$FetchedFirstAlbumsState implements FetchedFirstAlbumsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbums,
-    required TResult Function(List<Album> albums) fetchedAlbums,
+    required TResult Function(List<AlbumWithPhotos> albums) fetchedAlbums,
     required TResult Function(String error) errorFetchAlbums,
   }) {
     return fetchedAlbums(albums);
@@ -645,7 +645,7 @@ class _$FetchedFirstAlbumsState implements FetchedFirstAlbumsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
   }) {
     return fetchedAlbums?.call(albums);
@@ -656,7 +656,7 @@ class _$FetchedFirstAlbumsState implements FetchedFirstAlbumsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
     required TResult orElse(),
   }) {
@@ -706,10 +706,10 @@ class _$FetchedFirstAlbumsState implements FetchedFirstAlbumsState {
 }
 
 abstract class FetchedFirstAlbumsState implements FirstAlbumsState {
-  const factory FetchedFirstAlbumsState(List<Album> albums) =
+  const factory FetchedFirstAlbumsState(List<AlbumWithPhotos> albums) =
       _$FetchedFirstAlbumsState;
 
-  List<Album> get albums => throw _privateConstructorUsedError;
+  List<AlbumWithPhotos> get albums => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $FetchedFirstAlbumsStateCopyWith<FetchedFirstAlbumsState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -785,7 +785,7 @@ class _$ErrorFetchFirstAlbumsState implements ErrorFetchFirstAlbumsState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loadingAlbums,
-    required TResult Function(List<Album> albums) fetchedAlbums,
+    required TResult Function(List<AlbumWithPhotos> albums) fetchedAlbums,
     required TResult Function(String error) errorFetchAlbums,
   }) {
     return errorFetchAlbums(error);
@@ -796,7 +796,7 @@ class _$ErrorFetchFirstAlbumsState implements ErrorFetchFirstAlbumsState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
   }) {
     return errorFetchAlbums?.call(error);
@@ -807,7 +807,7 @@ class _$ErrorFetchFirstAlbumsState implements ErrorFetchFirstAlbumsState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loadingAlbums,
-    TResult Function(List<Album> albums)? fetchedAlbums,
+    TResult Function(List<AlbumWithPhotos> albums)? fetchedAlbums,
     TResult Function(String error)? errorFetchAlbums,
     required TResult orElse(),
   }) {

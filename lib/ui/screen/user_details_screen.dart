@@ -245,21 +245,22 @@ class _UserAlbums extends StatelessWidget {
                       height: 80,
                       width: double.infinity,
                       child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
+                        padding: const EdgeInsets.all(8),
+                        child: Row(
                           children: [
-                            Text(
-                              post.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: sublabelStyle,
-                            ),
-                            sizedBox16,
-                            Text(
-                              post.title,
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: valueStyle,
+                            Image.network(post.photos.first.thumbnailUrl),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  Text(
+                                    post.album.title,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: sublabelStyle,
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

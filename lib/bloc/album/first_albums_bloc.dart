@@ -1,4 +1,4 @@
-import 'package:eclipse_test_app/model/album/album.dart';
+import 'package:eclipse_test_app/model/album/album_with_photos.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -15,7 +15,7 @@ class FirstAlbumsEvent with _$FirstAlbumsEvent {
 class FirstAlbumsState with _$FirstAlbumsState {
   const factory FirstAlbumsState.initial() = InitialFirstAlbumsState;
   const factory FirstAlbumsState.loadingAlbums() = LoadingFirstAlbumsState;
-  const factory FirstAlbumsState.fetchedAlbums(List<Album> albums) =
+  const factory FirstAlbumsState.fetchedAlbums(List<AlbumWithPhotos> albums) =
       FetchedFirstAlbumsState;
   const factory FirstAlbumsState.errorFetchAlbums(String error) =
       ErrorFetchFirstAlbumsState;
@@ -39,7 +39,16 @@ class FirstAlbumsBloc extends Bloc<FirstAlbumsEvent, FirstAlbumsState> {
     if (albums.error.isNotEmpty) {
       yield FirstAlbumsState.errorFetchAlbums(albums.error);
     } else {
-      yield FirstAlbumsState.fetchedAlbums(albums.albums.take(3).toList());
+      final first3Albums =
+          await Stream.fromIterable(albums.albums.take(3)).asyncMap(
+        (album) async {
+          final photos = await repo.getAlbumPhotos(album.id);
+
+          return AlbumWithPhotos(album, photos.photos.take(1).toList());
+        },
+      ).toList();
+
+      yield FirstAlbumsState.fetchedAlbums(first3Albums);
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/model/photo/photo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'album.freezed.dart';
