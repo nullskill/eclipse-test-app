@@ -100,7 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Row(
                             children: [
                               Text(
-                                '@${user.userName} - ${user.name}',
+                                '@${user.userName}',
+                                style: labelStyle,
+                              ),
+                              Text(
+                                ' - ${user.name}',
                                 style: valueStyle,
                               ),
                             ],
