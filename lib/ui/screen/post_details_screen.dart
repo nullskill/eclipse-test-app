@@ -31,6 +31,46 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
         .add(AllCommentsEvent.fetchAllPostComments(widget.postId));
   }
 
+  // This function is triggered when the 'Add comment' buttion is pressed
+  void _addComment(BuildContext context) {
+    showModalBottomSheet(
+      isScrollControlled: true,
+      elevation: 5,
+      context: context,
+      builder: (context) => Padding(
+        padding: const EdgeInsets.all(15),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextField(
+              keyboardType: TextInputType.name,
+              decoration: InputDecoration(labelText: 'Name'),
+            ),
+            TextField(
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(labelText: 'Email'),
+            ),
+            TextField(
+              keyboardType: TextInputType.text,
+              // minLines: 5,
+              maxLines: 5,
+              decoration: InputDecoration(labelText: 'Comment'),
+            ),
+            sizedBox16,
+            Center(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('Send'),
+              ),
+            ),
+            sizedBox16,
+          ],
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,6 +85,11 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
             children: [
               _UserPost(),
               _PostComments(postId: widget.postId),
+              ElevatedButton(
+                onPressed: () => _addComment(context),
+                child: Text('Add comment'),
+              ),
+              sizedBox16,
             ],
           ),
         ),
