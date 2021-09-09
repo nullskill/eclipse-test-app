@@ -1,6 +1,5 @@
 import 'package:eclipse_test_app/bloc/comment/all_comments_bloc.dart';
-import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
-import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
+import 'package:eclipse_test_app/bloc/post/post_details_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
@@ -26,8 +25,8 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<UserDetailsBloc>(context, listen: false)
-        .add(UserDetailsEvent.fetchUserDetails(widget.postId));
+    BlocProvider.of<PostDetailsBloc>(context, listen: false)
+        .add(PostDetailsEvent.fetchPostDetails(widget.postId));
     BlocProvider.of<AllCommentsBloc>(context, listen: false)
         .add(AllCommentsEvent.fetchAllPostComments(widget.postId));
   }
@@ -44,8 +43,8 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              _UserInfo(),
-              // _UserPosts(userName: widget.userName),
+              _UserPost(),
+              _PostComments(postId: widget.postId),
             ],
           ),
         ),
@@ -54,68 +53,29 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
   }
 }
 
-class _UserInfo extends StatelessWidget {
-  const _UserInfo({Key? key}) : super(key: key);
+class _UserPost extends StatelessWidget {
+  const _UserPost({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserDetailsBloc, UserDetailsState>(
+    return BlocBuilder<PostDetailsBloc, PostDetailsState>(
       builder: (_, state) {
-        if (state is FetchedUserDetailsState) {
-          final address = state.userDetails.address;
-
+        if (state is FetchedPostDetailsState) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Name:', style: labelStyle),
-              sizedBox8,
-              Text(state.userDetails.name, style: valueStyle),
-              sizedBox16,
-              Text('Email:', style: labelStyle),
-              sizedBox8,
-              Text(state.userDetails.email, style: valueStyle),
-              sizedBox16,
-              Text('Phone:', style: labelStyle),
-              sizedBox8,
-              Text(state.userDetails.phone, style: valueStyle),
-              sizedBox16,
-              Text('Website:', style: labelStyle),
-              sizedBox8,
-              Text(state.userDetails.website, style: valueStyle),
-              sizedBox16,
-              Text('Company:', style: labelStyle),
-              sizedBox8,
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('Name:', style: sublabelStyle),
-                    sizedBox8,
-                    Text(state.userDetails.company.name, style: valueStyle),
-                    sizedBox16,
-                    Text('bs:', style: sublabelStyle),
-                    sizedBox8,
-                    Text(state.userDetails.company.bs, style: valueStyle),
-                    sizedBox16,
-                    Text('Catch phrase:', style: sublabelStyle),
-                    sizedBox8,
-                    Text(
-                      state.userDetails.company.catchPhrase,
-                      style: valueItalicStyle,
-                    ),
-                  ],
-                ),
+              Align(
+                alignment: Alignment.center,
+                child: Text('Post:', style: labelStyle),
               ),
               sizedBox16,
-              Text('Address:', style: labelStyle),
+              Text(state.postDetails.title, style: sublabelStyle),
               sizedBox8,
-              Text(
-                  '${address.city}, ${address.street}, ${address.suite}, ${address.zipCode}, ${address.geo}',
-                  style: valueStyle),
+              Text(state.postDetails.body, style: valueStyle),
+              sizedBox16,
             ],
           );
-        } else if (state is ErrorFetchUserDetailsState) {
+        } else if (state is ErrorFetchPostDetailsState) {
           return Center(child: Text('${state.error}'));
         } else {
           return Center(child: CircularProgressIndicator());
@@ -125,16 +85,16 @@ class _UserInfo extends StatelessWidget {
   }
 }
 
-class _UserPosts extends StatelessWidget {
-  final String userName;
+class _PostComments extends StatelessWidget {
+  final int postId;
 
-  const _UserPosts({Key? key, required this.userName}) : super(key: key);
+  const _PostComments({Key? key, required this.postId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<FirstPostsBloc, FirstPostsState>(
+    return BlocBuilder<AllCommentsBloc, AllCommentsState>(
       builder: (_, state) {
-        if (state is FetchedFirstPostsState) {
+        if (state is FetchedAllPostsState) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -143,32 +103,40 @@ class _UserPosts extends StatelessWidget {
               sizedBox16,
               Align(
                 alignment: Alignment.center,
-                child: Text('Posts:', style: labelStyle),
+                child: Text('Comments:', style: labelStyle),
               ),
               sizedBox8,
-              for (final post in state.posts)
+              for (final comment in state.comments)
                 Card(
                   margin: const EdgeInsets.all(8),
                   elevation: 2,
                   child: SizedBox(
-                    height: 80,
+                    height: 120,
                     width: double.infinity,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            post.title,
+                            comment.name,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: sublabelStyle,
+                            style: commentlabelStyle,
                           ),
-                          sizedBox16,
+                          sizedBox3,
                           Text(
-                            post.body,
+                            comment.email,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: valueStyle,
+                            style: commentlabelStyle,
+                          ),
+                          sizedBox8,
+                          Text(
+                            comment.body,
+                            maxLines: 4,
+                            overflow: TextOverflow.ellipsis,
+                            style: commentStyle,
                           ),
                         ],
                       ),
@@ -177,7 +145,7 @@ class _UserPosts extends StatelessWidget {
                 ),
             ],
           );
-        } else if (state is ErrorFetchFirstPostsState) {
+        } else if (state is ErrorFetchAllPostsState) {
           return Center(child: Text('${state.error}'));
         } else {
           return Center(child: CircularProgressIndicator());

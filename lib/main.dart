@@ -4,6 +4,7 @@ import 'package:eclipse_test_app/bloc/album/first_albums_bloc.dart';
 import 'package:eclipse_test_app/bloc/comment/all_comments_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/all_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
+import 'package:eclipse_test_app/bloc/post/post_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/users_bloc.dart';
 import 'package:eclipse_test_app/repository/repository.dart';
@@ -46,6 +47,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<AllPostsBloc>(
           create: (BuildContext context) => AllPostsBloc(
+            context.read<Repository>(),
+          ),
+        ),
+        BlocProvider<PostDetailsBloc>(
+          create: (BuildContext context) => PostDetailsBloc(
             context.read<Repository>(),
           ),
         ),
