@@ -1,3 +1,4 @@
+import 'package:eclipse_test_app/bloc/comment/all_comments_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/first_posts_bloc.dart';
 import 'package:eclipse_test_app/bloc/user/user_details_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
@@ -27,8 +28,8 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 
     BlocProvider.of<UserDetailsBloc>(context, listen: false)
         .add(UserDetailsEvent.fetchUserDetails(widget.postId));
-    BlocProvider.of<FirstPostsBloc>(context, listen: false)
-        .add(FirstPostsEvent.fetchFirstUserPosts(widget.postId));
+    BlocProvider.of<AllCommentsBloc>(context, listen: false)
+        .add(AllCommentsEvent.fetchAllPostComments(widget.postId));
   }
 
   @override
@@ -44,7 +45,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
           child: Column(
             children: [
               _UserInfo(),
-              _UserPosts(userName: widget.userName),
+              // _UserPosts(userName: widget.userName),
             ],
           ),
         ),

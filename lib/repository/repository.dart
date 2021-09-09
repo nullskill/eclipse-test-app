@@ -3,6 +3,7 @@ import 'package:eclipse_test_app/model/album/album.dart';
 import 'package:eclipse_test_app/model/album/albums_response.dart';
 import 'package:eclipse_test_app/model/comment/comments_response.dart';
 import 'package:eclipse_test_app/model/photo/photos_response.dart';
+import 'package:eclipse_test_app/model/post/post.dart';
 import 'package:eclipse_test_app/model/post/posts_response.dart';
 import 'package:eclipse_test_app/model/user/user.dart';
 import 'package:eclipse_test_app/model/user/users_response.dart';
@@ -55,6 +56,19 @@ class Repository {
       print('Dio exception occured: $e');
 
       return PostsResponse.withError('$e');
+    }
+  }
+
+  /// Get all post details by [id]
+  Future<Post?> getPostDetails(int id) async {
+    try {
+      final response = await _dio.get('$postsUrl/$id');
+
+      return Post.fromJson(response.data);
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
+
+      return null;
     }
   }
 
