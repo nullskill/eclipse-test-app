@@ -46,8 +46,7 @@ class _AlbumDetailsScreen extends State<AlbumDetailsScreen> {
               final photos = state.albumDetails.photos;
               return Column(
                 children: [
-                  Align(
-                    alignment: Alignment.center,
+                  Center(
                     child: Text('Album:', style: labelStyle),
                   ),
                   sizedBox16,

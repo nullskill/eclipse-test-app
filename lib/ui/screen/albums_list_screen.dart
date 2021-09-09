@@ -64,8 +64,7 @@ class _UserAlbums extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.center,
+              Center(
                 child: Text('All Albums:', style: labelStyle),
               ),
               sizedBox8,

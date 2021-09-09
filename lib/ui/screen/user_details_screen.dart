@@ -146,8 +146,7 @@ class _UserPosts extends StatelessWidget {
               sizedBox16,
               Divider(),
               sizedBox16,
-              Align(
-                alignment: Alignment.center,
+              Center(
                 child: Text('Posts:', style: labelStyle),
               ),
               sizedBox8,
@@ -226,8 +225,7 @@ class _UserAlbums extends StatelessWidget {
               sizedBox16,
               Divider(),
               sizedBox16,
-              Align(
-                alignment: Alignment.center,
+              Center(
                 child: Text('Albums:', style: labelStyle),
               ),
               sizedBox8,

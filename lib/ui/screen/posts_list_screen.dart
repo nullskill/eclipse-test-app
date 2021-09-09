@@ -59,8 +59,7 @@ class _UserPosts extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.center,
+              Center(
                 child: Text('All Posts:', style: labelStyle),
               ),
               sizedBox8,

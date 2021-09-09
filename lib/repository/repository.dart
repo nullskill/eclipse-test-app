@@ -12,18 +12,28 @@ import 'package:eclipse_test_app/util/const.dart';
 /// The Jsonplaceholder repository for managing API calls
 /// API docs: https://jsonplaceholder.typicode.com/
 class Repository {
-  final Dio _dio = Dio();
+  late final Dio _dio;
 
-  final usersUrl = '$apiUrl/users';
-  final postsUrl = '$apiUrl/posts';
-  final albumsUrl = '$apiUrl/albums';
-  final photosUrl = '$apiUrl/photos';
-  final commentsUrl = '$apiUrl/comments';
+  final _options = BaseOptions(
+      receiveDataWhenStatusError: true,
+      connectTimeout: 60 * 1000, // 60 seconds
+      receiveTimeout: 60 * 1000 // 60 seconds
+      );
+
+  Repository() {
+    _dio = Dio(_options);
+  }
+
+  final _usersUrl = '$apiUrl/users';
+  final _postsUrl = '$apiUrl/posts';
+  final _albumsUrl = '$apiUrl/albums';
+  final _photosUrl = '$apiUrl/photos';
+  final _commentsUrl = '$apiUrl/comments';
 
   /// Get all users
   Future<UsersResponse> getUsers() async {
     try {
-      final response = await _dio.get(usersUrl);
+      final response = await _dio.get(_usersUrl);
 
       return UsersResponse.fromJson(response.data);
     } on DioError catch (e) {
@@ -36,7 +46,7 @@ class Repository {
   /// Get user details by [id]
   Future<User?> getUserDetails(int id) async {
     try {
-      final response = await _dio.get('$usersUrl/$id');
+      final response = await _dio.get('$_usersUrl/$id');
 
       return User.fromJson(response.data);
     } on DioError catch (e) {
@@ -49,7 +59,7 @@ class Repository {
   /// Get all posts by user [id]
   Future<PostsResponse> getUserPosts(int id) async {
     try {
-      final response = await _dio.get('$postsUrl/?userId=$id');
+      final response = await _dio.get('$_postsUrl/?userId=$id');
 
       return PostsResponse.fromJson(response.data);
     } on DioError catch (e) {
@@ -62,7 +72,7 @@ class Repository {
   /// Get all post details by [id]
   Future<Post?> getPostDetails(int id) async {
     try {
-      final response = await _dio.get('$postsUrl/$id');
+      final response = await _dio.get('$_postsUrl/$id');
 
       return Post.fromJson(response.data);
     } on DioError catch (e) {
@@ -75,7 +85,7 @@ class Repository {
   /// Get all comments by post [id]
   Future<CommentsResponse> getPostComments(int id) async {
     try {
-      final response = await _dio.get('$commentsUrl/?postId=$id');
+      final response = await _dio.get('$_commentsUrl/?postId=$id');
 
       return CommentsResponse.fromJson(response.data);
     } on DioError catch (e) {
@@ -88,7 +98,7 @@ class Repository {
   /// Get all albums by user [id]
   Future<AlbumsResponse> getUserAlbums(int id) async {
     try {
-      final response = await _dio.get('$albumsUrl/?userId=$id');
+      final response = await _dio.get('$_albumsUrl/?userId=$id');
 
       return AlbumsResponse.fromJson(response.data);
     } on DioError catch (e) {
@@ -101,7 +111,7 @@ class Repository {
   /// Get all album details by [id]
   Future<Album?> getAlbumDetails(int id) async {
     try {
-      final response = await _dio.get('$albumsUrl/$id');
+      final response = await _dio.get('$_albumsUrl/$id');
 
       return Album.fromJson(response.data);
     } on DioError catch (e) {
@@ -114,7 +124,7 @@ class Repository {
   /// Get all photos by album [id]
   Future<PhotosResponse> getAlbumPhotos(int id) async {
     try {
-      final response = await _dio.get('$photosUrl/?albumId=$id');
+      final response = await _dio.get('$_photosUrl/?albumId=$id');
 
       return PhotosResponse.fromJson(response.data);
     } on DioError catch (e) {
