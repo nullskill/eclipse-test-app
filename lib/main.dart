@@ -14,12 +14,22 @@ import 'package:eclipse_test_app/ui/screen/user_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final prefs = await SharedPreferences.getInstance();
+  prefs.clear();
+
+  runApp(MyApp(prefs: prefs));
 }
 
 class MyApp extends StatelessWidget {
+  final SharedPreferences prefs;
+
+  const MyApp({Key? key, required this.prefs}) : super(key: key);
+
   static const appTitle = 'Eclipse test app';
   static const title = 'User list';
 
@@ -27,8 +37,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<SharedPreferences>(
+          create: (BuildContext context) => prefs,
+        ),
         RepositoryProvider<Repository>(
-          create: (BuildContext context) => Repository(),
+          create: (BuildContext context) => Repository(
+            context.read<SharedPreferences>(),
+          ),
         ),
         BlocProvider<UsersBloc>(
           create: (BuildContext context) => UsersBloc(
