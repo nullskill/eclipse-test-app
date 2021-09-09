@@ -3,7 +3,9 @@ import 'package:eclipse_test_app/bloc/post/post_details_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PostDetailsScreen extends StatefulWidget {
@@ -21,6 +23,8 @@ class PostDetailsScreen extends StatefulWidget {
 }
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
+  final _formKey = GlobalKey<FormState>();
+
   @override
   void initState() {
     super.initState();
@@ -39,37 +43,60 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
       context: context,
       builder: (context) => Padding(
         padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            TextField(
-              keyboardType: TextInputType.name,
-              decoration: InputDecoration(labelText: 'Name'),
-            ),
-            TextField(
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(labelText: 'Email'),
-            ),
-            TextField(
-              keyboardType: TextInputType.text,
-              // minLines: 5,
-              maxLines: 5,
-              decoration: InputDecoration(labelText: 'Comment'),
-            ),
-            sizedBox16,
-            Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text('Send'),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TextFormField(
+                initialValue: '',
+                inputFormatters: [
+                  FilteringTextInputFormatter.deny(RegExp(r'[/\\]')),
+                ],
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(labelText: 'Name'),
               ),
-            ),
-            sizedBox16,
-          ],
+              TextFormField(
+                initialValue: '',
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value!.isNotEmpty && !isEmail(value)) {
+                    return 'Please enter a valid email or phone number.';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                initialValue: '',
+                keyboardType: TextInputType.text,
+                maxLines: 5,
+                decoration: InputDecoration(labelText: 'Comment'),
+              ),
+              sizedBox16,
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (!_formKey.currentState!.validate()) {
+                      print('Email incorrect!');
+                      // ScaffoldMessenger.of(context).showSnackBar(
+                      //   const SnackBar(content: Text('Processing Data')),
+                      // );
+                    }
+                  },
+                  child: Text('Send'),
+                ),
+              ),
+              sizedBox16,
+            ],
+          ),
         ),
       ),
     );
   }
+
+  bool isEmail(String input) => EmailValidator.validate(input);
 
   @override
   Widget build(BuildContext context) {

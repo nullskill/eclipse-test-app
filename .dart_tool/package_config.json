@@ -158,6 +158,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "email_validator",
+      "rootUri": "file:///Users/ilya/dev/flutter/.pub-cache/hosted/pub.dartlang.org/email_validator-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "fake_async",
       "rootUri": "file:///Users/ilya/dev/flutter/.pub-cache/hosted/pub.dartlang.org/fake_async-1.2.0",
       "packageUri": "lib/",
@@ -458,7 +464,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-09-07T14:18:24.300928Z",
+  "generated": "2021-09-09T10:33:03.102946Z",
   "generator": "pub",
   "generatorVersion": "2.13.4"
 }
