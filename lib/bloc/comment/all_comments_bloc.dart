@@ -9,6 +9,8 @@ part 'all_comments_bloc.freezed.dart';
 class AllCommentsEvent with _$AllCommentsEvent {
   const factory AllCommentsEvent.fetchAllPostComments(int postId) =
       FetchAllCommentsEvent;
+  const factory AllCommentsEvent.sendNewComment(Comment comment) =
+      SendNewCommentEvent;
 }
 
 @freezed
@@ -16,9 +18,11 @@ class AllCommentsState with _$AllCommentsState {
   const factory AllCommentsState.initial() = InitialAllCommentsState;
   const factory AllCommentsState.loadingComments() = LoadingAllCommentsState;
   const factory AllCommentsState.fetchedComments(List<Comment> comments) =
-      FetchedAllPostsState;
+      FetchedAllCommentsState;
   const factory AllCommentsState.errorFetchComments(String error) =
-      ErrorFetchAllPostsState;
+      ErrorFetchAllCommentsState;
+  const factory AllCommentsState.errorSendComment(String error) =
+      ErrorSendCommentState;
 }
 
 class AllCommentsBloc extends Bloc<AllCommentsEvent, AllCommentsState> {
@@ -28,6 +32,7 @@ class AllCommentsBloc extends Bloc<AllCommentsEvent, AllCommentsState> {
   Stream<AllCommentsState> mapEventToState(AllCommentsEvent event) =>
       event.maybeWhen<Stream<AllCommentsState>>(
         fetchAllPostComments: (int postId) => _fetchPostsComments(postId),
+        sendNewComment: (Comment comment) => _sendNewComment(comment),
         orElse: _initial,
       );
 
@@ -35,6 +40,28 @@ class AllCommentsBloc extends Bloc<AllCommentsEvent, AllCommentsState> {
     yield AllCommentsState.loadingComments();
 
     final comments = await repo.getPostComments(postId);
+
+    if (comments.error.isNotEmpty) {
+      yield AllCommentsState.errorFetchComments(comments.error);
+    } else {
+      yield AllCommentsState.fetchedComments(comments.comments);
+    }
+  }
+
+  Stream<AllCommentsState> _sendNewComment(Comment comment) async* {
+    yield AllCommentsState.loadingComments();
+
+    final result = await repo.sendComment(comment);
+
+    if (!result) {
+      yield AllCommentsState.errorFetchComments(
+        'There was an error sending comment',
+      );
+
+      return;
+    }
+
+    final comments = await repo.getPostComments(comment.postId);
 
     if (comments.error.isNotEmpty) {
       yield AllCommentsState.errorFetchComments(comments.error);

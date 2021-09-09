@@ -1,5 +1,6 @@
 import 'package:eclipse_test_app/bloc/comment/all_comments_bloc.dart';
 import 'package:eclipse_test_app/bloc/post/post_details_bloc.dart';
+import 'package:eclipse_test_app/model/comment/comment.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
@@ -37,6 +38,8 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 
   // This function is triggered when the 'Add comment' buttion is pressed
   void _addComment(BuildContext context) {
+    String? name, email, body;
+
     showModalBottomSheet(
       isScrollControlled: true,
       elevation: 5,
@@ -62,6 +65,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                   }
                   return null;
                 },
+                onSaved: (value) => name = value!,
               ),
               TextFormField(
                 initialValue: '',
@@ -73,6 +77,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                   }
                   return null;
                 },
+                onSaved: (value) => email = value!,
               ),
               TextFormField(
                 initialValue: '',
@@ -85,14 +90,31 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
                   }
                   return null;
                 },
+                onSaved: (value) => body = value!,
               ),
               sizedBox16,
               Center(
                 child: ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      print('Hooray!');
-                    }
+                  onPressed: () async {
+                    final formData = _formKey.currentState!;
+                    if (!formData.validate()) return;
+
+                    formData.save();
+                    BlocProvider.of<AllCommentsBloc>(
+                      context,
+                      listen: false,
+                    ).add(
+                      AllCommentsEvent.sendNewComment(
+                        Comment(
+                          postId: widget.postId,
+                          id: -1,
+                          name: name!,
+                          email: email!,
+                          body: body!,
+                        ),
+                      ),
+                    );
+                    Navigator.pop(context);
                   },
                   child: Text('Send'),
                 ),
@@ -174,7 +196,7 @@ class _PostComments extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AllCommentsBloc, AllCommentsState>(
       builder: (_, state) {
-        if (state is FetchedAllPostsState) {
+        if (state is FetchedAllCommentsState) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -224,7 +246,7 @@ class _PostComments extends StatelessWidget {
                 ),
             ],
           );
-        } else if (state is ErrorFetchAllPostsState) {
+        } else if (state is ErrorFetchAllCommentsState) {
           return Center(child: Text('${state.error}'));
         } else {
           return Center(child: CircularProgressIndicator());

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:eclipse_test_app/model/album/album.dart';
 import 'package:eclipse_test_app/model/album/albums_response.dart';
+import 'package:eclipse_test_app/model/comment/comment.dart';
 import 'package:eclipse_test_app/model/comment/comments_response.dart';
 import 'package:eclipse_test_app/model/photo/photos_response.dart';
 import 'package:eclipse_test_app/model/post/post.dart';
@@ -38,7 +39,6 @@ class Repository {
   Future<UsersResponse> getUsers() async {
     try {
       final usersCache = prefs.getString('users') ?? '';
-
       if (usersCache.isNotEmpty) {
         return UsersResponse.fromJson(jsonDecode(usersCache));
       }
@@ -58,7 +58,6 @@ class Repository {
   Future<User?> getUserDetails(int id) async {
     try {
       final userCache = prefs.getString('user_$id') ?? '';
-
       if (userCache.isNotEmpty) {
         return User.fromJson(jsonDecode(userCache));
       }
@@ -78,7 +77,6 @@ class Repository {
   Future<PostsResponse> getUserPosts(int id) async {
     try {
       final postsCache = prefs.getString('posts_$id') ?? '';
-
       if (postsCache.isNotEmpty) {
         return PostsResponse.fromJson(jsonDecode(postsCache));
       }
@@ -98,7 +96,6 @@ class Repository {
   Future<Post?> getPostDetails(int id) async {
     try {
       final postCache = prefs.getString('post_$id') ?? '';
-
       if (postCache.isNotEmpty) {
         return Post.fromJson(jsonDecode(postCache));
       }
@@ -118,7 +115,6 @@ class Repository {
   Future<CommentsResponse> getPostComments(int id) async {
     try {
       final commentsCache = prefs.getString('comments_$id') ?? '';
-
       if (commentsCache.isNotEmpty) {
         return CommentsResponse.fromJson(jsonDecode(commentsCache));
       }
@@ -134,11 +130,43 @@ class Repository {
     }
   }
 
+  /// Send new comment
+  Future<bool> sendComment(Comment comment) async {
+    try {
+      final response = await _dio.post(
+        _commentsUrl,
+        data: comment.toJson(),
+        options: Options(
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        ),
+      );
+
+      if (response.statusCode != 201) return false;
+
+      // Caching
+      final comments = [];
+      final commentsCache = prefs.getString('comments_${comment.postId}') ?? '';
+      if (commentsCache.isNotEmpty) {
+        comments.addAll(jsonDecode(commentsCache));
+      }
+      comments.add(response.data);
+
+      prefs.setString('comments_${comment.postId}', jsonEncode(comments));
+
+      return true;
+    } on DioError catch (e) {
+      print('Dio exception occured: $e');
+
+      return false;
+    }
+  }
+
   /// Get all albums by user [id]
   Future<AlbumsResponse> getUserAlbums(int id) async {
     try {
       final albumsCache = prefs.getString('albums_$id') ?? '';
-
       if (albumsCache.isNotEmpty) {
         return AlbumsResponse.fromJson(jsonDecode(albumsCache));
       }
@@ -158,7 +186,6 @@ class Repository {
   Future<Album?> getAlbumDetails(int id) async {
     try {
       final albumCache = prefs.getString('album_$id') ?? '';
-
       if (albumCache.isNotEmpty) {
         return Album.fromJson(jsonDecode(albumCache));
       }
@@ -178,7 +205,6 @@ class Repository {
   Future<PhotosResponse> getAlbumPhotos(int id) async {
     try {
       final photosCache = prefs.getString('photos_$id') ?? '';
-
       if (photosCache.isNotEmpty) {
         return PhotosResponse.fromJson(jsonDecode(photosCache));
       }

@@ -22,6 +22,12 @@ class _$AllCommentsEventTearOff {
       postId,
     );
   }
+
+  SendNewCommentEvent sendNewComment(Comment comment) {
+    return SendNewCommentEvent(
+      comment,
+    );
+  }
 }
 
 /// @nodoc
@@ -29,43 +35,43 @@ const $AllCommentsEvent = _$AllCommentsEventTearOff();
 
 /// @nodoc
 mixin _$AllCommentsEvent {
-  int get postId => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int postId) fetchAllPostComments,
+    required TResult Function(Comment comment) sendNewComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllCommentsEvent value) fetchAllPostComments,
+    required TResult Function(SendNewCommentEvent value) sendNewComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $AllCommentsEventCopyWith<AllCommentsEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -74,7 +80,6 @@ abstract class $AllCommentsEventCopyWith<$Res> {
   factory $AllCommentsEventCopyWith(
           AllCommentsEvent value, $Res Function(AllCommentsEvent) then) =
       _$AllCommentsEventCopyWithImpl<$Res>;
-  $Res call({int postId});
 }
 
 /// @nodoc
@@ -85,27 +90,13 @@ class _$AllCommentsEventCopyWithImpl<$Res>
   final AllCommentsEvent _value;
   // ignore: unused_field
   final $Res Function(AllCommentsEvent) _then;
-
-  @override
-  $Res call({
-    Object? postId = freezed,
-  }) {
-    return _then(_value.copyWith(
-      postId: postId == freezed
-          ? _value.postId
-          : postId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
 }
 
 /// @nodoc
-abstract class $FetchAllCommentsEventCopyWith<$Res>
-    implements $AllCommentsEventCopyWith<$Res> {
+abstract class $FetchAllCommentsEventCopyWith<$Res> {
   factory $FetchAllCommentsEventCopyWith(FetchAllCommentsEvent value,
           $Res Function(FetchAllCommentsEvent) then) =
       _$FetchAllCommentsEventCopyWithImpl<$Res>;
-  @override
   $Res call({int postId});
 }
 
@@ -168,6 +159,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int postId) fetchAllPostComments,
+    required TResult Function(Comment comment) sendNewComment,
   }) {
     return fetchAllPostComments(postId);
   }
@@ -176,6 +168,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
   }) {
     return fetchAllPostComments?.call(postId);
   }
@@ -184,6 +177,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
     required TResult orElse(),
   }) {
     if (fetchAllPostComments != null) {
@@ -196,6 +190,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(FetchAllCommentsEvent value) fetchAllPostComments,
+    required TResult Function(SendNewCommentEvent value) sendNewComment,
   }) {
     return fetchAllPostComments(this);
   }
@@ -204,6 +199,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
   }) {
     return fetchAllPostComments?.call(this);
   }
@@ -212,6 +208,7 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
     required TResult orElse(),
   }) {
     if (fetchAllPostComments != null) {
@@ -224,11 +221,152 @@ class _$FetchAllCommentsEvent implements FetchAllCommentsEvent {
 abstract class FetchAllCommentsEvent implements AllCommentsEvent {
   const factory FetchAllCommentsEvent(int postId) = _$FetchAllCommentsEvent;
 
-  @override
   int get postId => throw _privateConstructorUsedError;
-  @override
   @JsonKey(ignore: true)
   $FetchAllCommentsEventCopyWith<FetchAllCommentsEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SendNewCommentEventCopyWith<$Res> {
+  factory $SendNewCommentEventCopyWith(
+          SendNewCommentEvent value, $Res Function(SendNewCommentEvent) then) =
+      _$SendNewCommentEventCopyWithImpl<$Res>;
+  $Res call({Comment comment});
+
+  $CommentCopyWith<$Res> get comment;
+}
+
+/// @nodoc
+class _$SendNewCommentEventCopyWithImpl<$Res>
+    extends _$AllCommentsEventCopyWithImpl<$Res>
+    implements $SendNewCommentEventCopyWith<$Res> {
+  _$SendNewCommentEventCopyWithImpl(
+      SendNewCommentEvent _value, $Res Function(SendNewCommentEvent) _then)
+      : super(_value, (v) => _then(v as SendNewCommentEvent));
+
+  @override
+  SendNewCommentEvent get _value => super._value as SendNewCommentEvent;
+
+  @override
+  $Res call({
+    Object? comment = freezed,
+  }) {
+    return _then(SendNewCommentEvent(
+      comment == freezed
+          ? _value.comment
+          : comment // ignore: cast_nullable_to_non_nullable
+              as Comment,
+    ));
+  }
+
+  @override
+  $CommentCopyWith<$Res> get comment {
+    return $CommentCopyWith<$Res>(_value.comment, (value) {
+      return _then(_value.copyWith(comment: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$SendNewCommentEvent implements SendNewCommentEvent {
+  const _$SendNewCommentEvent(this.comment);
+
+  @override
+  final Comment comment;
+
+  @override
+  String toString() {
+    return 'AllCommentsEvent.sendNewComment(comment: $comment)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is SendNewCommentEvent &&
+            (identical(other.comment, comment) ||
+                const DeepCollectionEquality().equals(other.comment, comment)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(comment);
+
+  @JsonKey(ignore: true)
+  @override
+  $SendNewCommentEventCopyWith<SendNewCommentEvent> get copyWith =>
+      _$SendNewCommentEventCopyWithImpl<SendNewCommentEvent>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int postId) fetchAllPostComments,
+    required TResult Function(Comment comment) sendNewComment,
+  }) {
+    return sendNewComment(comment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
+  }) {
+    return sendNewComment?.call(comment);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int postId)? fetchAllPostComments,
+    TResult Function(Comment comment)? sendNewComment,
+    required TResult orElse(),
+  }) {
+    if (sendNewComment != null) {
+      return sendNewComment(comment);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FetchAllCommentsEvent value) fetchAllPostComments,
+    required TResult Function(SendNewCommentEvent value) sendNewComment,
+  }) {
+    return sendNewComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
+  }) {
+    return sendNewComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FetchAllCommentsEvent value)? fetchAllPostComments,
+    TResult Function(SendNewCommentEvent value)? sendNewComment,
+    required TResult orElse(),
+  }) {
+    if (sendNewComment != null) {
+      return sendNewComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class SendNewCommentEvent implements AllCommentsEvent {
+  const factory SendNewCommentEvent(Comment comment) = _$SendNewCommentEvent;
+
+  Comment get comment => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SendNewCommentEventCopyWith<SendNewCommentEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -244,14 +382,20 @@ class _$AllCommentsStateTearOff {
     return const LoadingAllCommentsState();
   }
 
-  FetchedAllPostsState fetchedComments(List<Comment> comments) {
-    return FetchedAllPostsState(
+  FetchedAllCommentsState fetchedComments(List<Comment> comments) {
+    return FetchedAllCommentsState(
       comments,
     );
   }
 
-  ErrorFetchAllPostsState errorFetchComments(String error) {
-    return ErrorFetchAllPostsState(
+  ErrorFetchAllCommentsState errorFetchComments(String error) {
+    return ErrorFetchAllCommentsState(
+      error,
+    );
+  }
+
+  ErrorSendCommentState errorSendComment(String error) {
+    return ErrorSendCommentState(
       error,
     );
   }
@@ -268,6 +412,7 @@ mixin _$AllCommentsState {
     required TResult Function() loadingComments,
     required TResult Function(List<Comment> comments) fetchedComments,
     required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -276,6 +421,7 @@ mixin _$AllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -284,6 +430,7 @@ mixin _$AllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -291,24 +438,28 @@ mixin _$AllCommentsState {
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAllCommentsState value) initial,
     required TResult Function(LoadingAllCommentsState value) loadingComments,
-    required TResult Function(FetchedAllPostsState value) fetchedComments,
-    required TResult Function(ErrorFetchAllPostsState value) errorFetchComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -375,6 +526,7 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
     required TResult Function() loadingComments,
     required TResult Function(List<Comment> comments) fetchedComments,
     required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
   }) {
     return initial();
   }
@@ -386,6 +538,7 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
   }) {
     return initial?.call();
   }
@@ -397,6 +550,7 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -410,8 +564,10 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAllCommentsState value) initial,
     required TResult Function(LoadingAllCommentsState value) loadingComments,
-    required TResult Function(FetchedAllPostsState value) fetchedComments,
-    required TResult Function(ErrorFetchAllPostsState value) errorFetchComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
   }) {
     return initial(this);
   }
@@ -421,8 +577,9 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
   }) {
     return initial?.call(this);
   }
@@ -432,8 +589,9 @@ class _$InitialAllCommentsState implements InitialAllCommentsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -491,6 +649,7 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
     required TResult Function() loadingComments,
     required TResult Function(List<Comment> comments) fetchedComments,
     required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
   }) {
     return loadingComments();
   }
@@ -502,6 +661,7 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
   }) {
     return loadingComments?.call();
   }
@@ -513,6 +673,7 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
     required TResult orElse(),
   }) {
     if (loadingComments != null) {
@@ -526,8 +687,10 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAllCommentsState value) initial,
     required TResult Function(LoadingAllCommentsState value) loadingComments,
-    required TResult Function(FetchedAllPostsState value) fetchedComments,
-    required TResult Function(ErrorFetchAllPostsState value) errorFetchComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
   }) {
     return loadingComments(this);
   }
@@ -537,8 +700,9 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
   }) {
     return loadingComments?.call(this);
   }
@@ -548,8 +712,9 @@ class _$LoadingAllCommentsState implements LoadingAllCommentsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
     required TResult orElse(),
   }) {
     if (loadingComments != null) {
@@ -564,29 +729,29 @@ abstract class LoadingAllCommentsState implements AllCommentsState {
 }
 
 /// @nodoc
-abstract class $FetchedAllPostsStateCopyWith<$Res> {
-  factory $FetchedAllPostsStateCopyWith(FetchedAllPostsState value,
-          $Res Function(FetchedAllPostsState) then) =
-      _$FetchedAllPostsStateCopyWithImpl<$Res>;
+abstract class $FetchedAllCommentsStateCopyWith<$Res> {
+  factory $FetchedAllCommentsStateCopyWith(FetchedAllCommentsState value,
+          $Res Function(FetchedAllCommentsState) then) =
+      _$FetchedAllCommentsStateCopyWithImpl<$Res>;
   $Res call({List<Comment> comments});
 }
 
 /// @nodoc
-class _$FetchedAllPostsStateCopyWithImpl<$Res>
+class _$FetchedAllCommentsStateCopyWithImpl<$Res>
     extends _$AllCommentsStateCopyWithImpl<$Res>
-    implements $FetchedAllPostsStateCopyWith<$Res> {
-  _$FetchedAllPostsStateCopyWithImpl(
-      FetchedAllPostsState _value, $Res Function(FetchedAllPostsState) _then)
-      : super(_value, (v) => _then(v as FetchedAllPostsState));
+    implements $FetchedAllCommentsStateCopyWith<$Res> {
+  _$FetchedAllCommentsStateCopyWithImpl(FetchedAllCommentsState _value,
+      $Res Function(FetchedAllCommentsState) _then)
+      : super(_value, (v) => _then(v as FetchedAllCommentsState));
 
   @override
-  FetchedAllPostsState get _value => super._value as FetchedAllPostsState;
+  FetchedAllCommentsState get _value => super._value as FetchedAllCommentsState;
 
   @override
   $Res call({
     Object? comments = freezed,
   }) {
-    return _then(FetchedAllPostsState(
+    return _then(FetchedAllCommentsState(
       comments == freezed
           ? _value.comments
           : comments // ignore: cast_nullable_to_non_nullable
@@ -597,8 +762,8 @@ class _$FetchedAllPostsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FetchedAllPostsState implements FetchedAllPostsState {
-  const _$FetchedAllPostsState(this.comments);
+class _$FetchedAllCommentsState implements FetchedAllCommentsState {
+  const _$FetchedAllCommentsState(this.comments);
 
   @override
   final List<Comment> comments;
@@ -611,7 +776,7 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is FetchedAllPostsState &&
+        (other is FetchedAllCommentsState &&
             (identical(other.comments, comments) ||
                 const DeepCollectionEquality()
                     .equals(other.comments, comments)));
@@ -623,8 +788,8 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
 
   @JsonKey(ignore: true)
   @override
-  $FetchedAllPostsStateCopyWith<FetchedAllPostsState> get copyWith =>
-      _$FetchedAllPostsStateCopyWithImpl<FetchedAllPostsState>(
+  $FetchedAllCommentsStateCopyWith<FetchedAllCommentsState> get copyWith =>
+      _$FetchedAllCommentsStateCopyWithImpl<FetchedAllCommentsState>(
           this, _$identity);
 
   @override
@@ -634,6 +799,7 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
     required TResult Function() loadingComments,
     required TResult Function(List<Comment> comments) fetchedComments,
     required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
   }) {
     return fetchedComments(comments);
   }
@@ -645,6 +811,7 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
   }) {
     return fetchedComments?.call(comments);
   }
@@ -656,6 +823,7 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
     required TResult orElse(),
   }) {
     if (fetchedComments != null) {
@@ -669,8 +837,10 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAllCommentsState value) initial,
     required TResult Function(LoadingAllCommentsState value) loadingComments,
-    required TResult Function(FetchedAllPostsState value) fetchedComments,
-    required TResult Function(ErrorFetchAllPostsState value) errorFetchComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
   }) {
     return fetchedComments(this);
   }
@@ -680,8 +850,9 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
   }) {
     return fetchedComments?.call(this);
   }
@@ -691,8 +862,9 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
     required TResult orElse(),
   }) {
     if (fetchedComments != null) {
@@ -702,40 +874,41 @@ class _$FetchedAllPostsState implements FetchedAllPostsState {
   }
 }
 
-abstract class FetchedAllPostsState implements AllCommentsState {
-  const factory FetchedAllPostsState(List<Comment> comments) =
-      _$FetchedAllPostsState;
+abstract class FetchedAllCommentsState implements AllCommentsState {
+  const factory FetchedAllCommentsState(List<Comment> comments) =
+      _$FetchedAllCommentsState;
 
   List<Comment> get comments => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $FetchedAllPostsStateCopyWith<FetchedAllPostsState> get copyWith =>
+  $FetchedAllCommentsStateCopyWith<FetchedAllCommentsState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ErrorFetchAllPostsStateCopyWith<$Res> {
-  factory $ErrorFetchAllPostsStateCopyWith(ErrorFetchAllPostsState value,
-          $Res Function(ErrorFetchAllPostsState) then) =
-      _$ErrorFetchAllPostsStateCopyWithImpl<$Res>;
+abstract class $ErrorFetchAllCommentsStateCopyWith<$Res> {
+  factory $ErrorFetchAllCommentsStateCopyWith(ErrorFetchAllCommentsState value,
+          $Res Function(ErrorFetchAllCommentsState) then) =
+      _$ErrorFetchAllCommentsStateCopyWithImpl<$Res>;
   $Res call({String error});
 }
 
 /// @nodoc
-class _$ErrorFetchAllPostsStateCopyWithImpl<$Res>
+class _$ErrorFetchAllCommentsStateCopyWithImpl<$Res>
     extends _$AllCommentsStateCopyWithImpl<$Res>
-    implements $ErrorFetchAllPostsStateCopyWith<$Res> {
-  _$ErrorFetchAllPostsStateCopyWithImpl(ErrorFetchAllPostsState _value,
-      $Res Function(ErrorFetchAllPostsState) _then)
-      : super(_value, (v) => _then(v as ErrorFetchAllPostsState));
+    implements $ErrorFetchAllCommentsStateCopyWith<$Res> {
+  _$ErrorFetchAllCommentsStateCopyWithImpl(ErrorFetchAllCommentsState _value,
+      $Res Function(ErrorFetchAllCommentsState) _then)
+      : super(_value, (v) => _then(v as ErrorFetchAllCommentsState));
 
   @override
-  ErrorFetchAllPostsState get _value => super._value as ErrorFetchAllPostsState;
+  ErrorFetchAllCommentsState get _value =>
+      super._value as ErrorFetchAllCommentsState;
 
   @override
   $Res call({
     Object? error = freezed,
   }) {
-    return _then(ErrorFetchAllPostsState(
+    return _then(ErrorFetchAllCommentsState(
       error == freezed
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -746,8 +919,8 @@ class _$ErrorFetchAllPostsStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
-  const _$ErrorFetchAllPostsState(this.error);
+class _$ErrorFetchAllCommentsState implements ErrorFetchAllCommentsState {
+  const _$ErrorFetchAllCommentsState(this.error);
 
   @override
   final String error;
@@ -760,7 +933,7 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other is ErrorFetchAllPostsState &&
+        (other is ErrorFetchAllCommentsState &&
             (identical(other.error, error) ||
                 const DeepCollectionEquality().equals(other.error, error)));
   }
@@ -771,9 +944,10 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
 
   @JsonKey(ignore: true)
   @override
-  $ErrorFetchAllPostsStateCopyWith<ErrorFetchAllPostsState> get copyWith =>
-      _$ErrorFetchAllPostsStateCopyWithImpl<ErrorFetchAllPostsState>(
-          this, _$identity);
+  $ErrorFetchAllCommentsStateCopyWith<ErrorFetchAllCommentsState>
+      get copyWith =>
+          _$ErrorFetchAllCommentsStateCopyWithImpl<ErrorFetchAllCommentsState>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -782,6 +956,7 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
     required TResult Function() loadingComments,
     required TResult Function(List<Comment> comments) fetchedComments,
     required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
   }) {
     return errorFetchComments(error);
   }
@@ -793,6 +968,7 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
   }) {
     return errorFetchComments?.call(error);
   }
@@ -804,6 +980,7 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
     TResult Function()? loadingComments,
     TResult Function(List<Comment> comments)? fetchedComments,
     TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
     required TResult orElse(),
   }) {
     if (errorFetchComments != null) {
@@ -817,8 +994,10 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
   TResult map<TResult extends Object?>({
     required TResult Function(InitialAllCommentsState value) initial,
     required TResult Function(LoadingAllCommentsState value) loadingComments,
-    required TResult Function(FetchedAllPostsState value) fetchedComments,
-    required TResult Function(ErrorFetchAllPostsState value) errorFetchComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
   }) {
     return errorFetchComments(this);
   }
@@ -828,8 +1007,9 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
   }) {
     return errorFetchComments?.call(this);
   }
@@ -839,8 +1019,9 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitialAllCommentsState value)? initial,
     TResult Function(LoadingAllCommentsState value)? loadingComments,
-    TResult Function(FetchedAllPostsState value)? fetchedComments,
-    TResult Function(ErrorFetchAllPostsState value)? errorFetchComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
     required TResult orElse(),
   }) {
     if (errorFetchComments != null) {
@@ -850,12 +1031,166 @@ class _$ErrorFetchAllPostsState implements ErrorFetchAllPostsState {
   }
 }
 
-abstract class ErrorFetchAllPostsState implements AllCommentsState {
-  const factory ErrorFetchAllPostsState(String error) =
-      _$ErrorFetchAllPostsState;
+abstract class ErrorFetchAllCommentsState implements AllCommentsState {
+  const factory ErrorFetchAllCommentsState(String error) =
+      _$ErrorFetchAllCommentsState;
 
   String get error => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $ErrorFetchAllPostsStateCopyWith<ErrorFetchAllPostsState> get copyWith =>
+  $ErrorFetchAllCommentsStateCopyWith<ErrorFetchAllCommentsState>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorSendCommentStateCopyWith<$Res> {
+  factory $ErrorSendCommentStateCopyWith(ErrorSendCommentState value,
+          $Res Function(ErrorSendCommentState) then) =
+      _$ErrorSendCommentStateCopyWithImpl<$Res>;
+  $Res call({String error});
+}
+
+/// @nodoc
+class _$ErrorSendCommentStateCopyWithImpl<$Res>
+    extends _$AllCommentsStateCopyWithImpl<$Res>
+    implements $ErrorSendCommentStateCopyWith<$Res> {
+  _$ErrorSendCommentStateCopyWithImpl(
+      ErrorSendCommentState _value, $Res Function(ErrorSendCommentState) _then)
+      : super(_value, (v) => _then(v as ErrorSendCommentState));
+
+  @override
+  ErrorSendCommentState get _value => super._value as ErrorSendCommentState;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(ErrorSendCommentState(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ErrorSendCommentState implements ErrorSendCommentState {
+  const _$ErrorSendCommentState(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'AllCommentsState.errorSendComment(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is ErrorSendCommentState &&
+            (identical(other.error, error) ||
+                const DeepCollectionEquality().equals(other.error, error)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(error);
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorSendCommentStateCopyWith<ErrorSendCommentState> get copyWith =>
+      _$ErrorSendCommentStateCopyWithImpl<ErrorSendCommentState>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function() loadingComments,
+    required TResult Function(List<Comment> comments) fetchedComments,
+    required TResult Function(String error) errorFetchComments,
+    required TResult Function(String error) errorSendComment,
+  }) {
+    return errorSendComment(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadingComments,
+    TResult Function(List<Comment> comments)? fetchedComments,
+    TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
+  }) {
+    return errorSendComment?.call(error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function()? loadingComments,
+    TResult Function(List<Comment> comments)? fetchedComments,
+    TResult Function(String error)? errorFetchComments,
+    TResult Function(String error)? errorSendComment,
+    required TResult orElse(),
+  }) {
+    if (errorSendComment != null) {
+      return errorSendComment(error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitialAllCommentsState value) initial,
+    required TResult Function(LoadingAllCommentsState value) loadingComments,
+    required TResult Function(FetchedAllCommentsState value) fetchedComments,
+    required TResult Function(ErrorFetchAllCommentsState value)
+        errorFetchComments,
+    required TResult Function(ErrorSendCommentState value) errorSendComment,
+  }) {
+    return errorSendComment(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(InitialAllCommentsState value)? initial,
+    TResult Function(LoadingAllCommentsState value)? loadingComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
+  }) {
+    return errorSendComment?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitialAllCommentsState value)? initial,
+    TResult Function(LoadingAllCommentsState value)? loadingComments,
+    TResult Function(FetchedAllCommentsState value)? fetchedComments,
+    TResult Function(ErrorFetchAllCommentsState value)? errorFetchComments,
+    TResult Function(ErrorSendCommentState value)? errorSendComment,
+    required TResult orElse(),
+  }) {
+    if (errorSendComment != null) {
+      return errorSendComment(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ErrorSendCommentState implements AllCommentsState {
+  const factory ErrorSendCommentState(String error) = _$ErrorSendCommentState;
+
+  String get error => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ErrorSendCommentStateCopyWith<ErrorSendCommentState> get copyWith =>
       throw _privateConstructorUsedError;
 }
