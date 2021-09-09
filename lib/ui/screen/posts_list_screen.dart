@@ -2,6 +2,7 @@ import 'package:eclipse_test_app/bloc/post/all_posts_bloc.dart';
 import 'package:eclipse_test_app/ui/res/colors.dart';
 import 'package:eclipse_test_app/ui/res/dividers.dart';
 import 'package:eclipse_test_app/ui/res/text_styles.dart';
+import 'package:eclipse_test_app/ui/screen/post_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -69,8 +70,8 @@ class _UserPosts extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => PostsListScreen(
-                          userId: post.userId,
+                        builder: (_) => PostDetailsScreen(
+                          postId: post.id,
                           userName: userName,
                         ),
                       ),

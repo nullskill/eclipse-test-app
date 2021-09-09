@@ -91,17 +91,9 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    // getAlbumPhotos();
-
     BlocProvider.of<UsersBloc>(context, listen: false)
         .add(UsersEvent.fetchUsers());
   }
-
-  // Future<void> getAlbumPhotos() async {
-  //   final user = await Repository().getAlbumPhotos(1);
-
-  //   print(user);
-  // }
 
   @override
   Widget build(BuildContext context) {
