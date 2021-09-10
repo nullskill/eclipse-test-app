@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (_, state) {
           if (state is FetchedUsersState) {
             return Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: ListView.builder(
                 itemCount: state.users.length,
                 itemBuilder: (_, index) {
@@ -157,7 +157,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       child: SizedBox(
                         height: 60,
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8),
                           child: Row(
                             children: [
                               Text(

@@ -39,7 +39,7 @@ class AlbumDetailsBloc extends Bloc<AlbumDetailsEvent, AlbumDetailsState> {
 
     if (album == null) {
       yield AlbumDetailsState.errorFetchAlbumDetails(
-          'There was an error getting user details');
+          'There was an error getting Album details');
     } else {
       final photos = await repo.getAlbumPhotos(album.id);
 

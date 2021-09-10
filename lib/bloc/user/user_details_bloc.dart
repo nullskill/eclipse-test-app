@@ -38,7 +38,7 @@ class UserDetailsBloc extends Bloc<UserDetailsEvent, UserDetailsState> {
 
     if (userDetails == null) {
       yield UserDetailsState.errorFetchUserDetails(
-          'There was an error getting user details');
+          'There was an error getting User details');
     } else {
       yield UserDetailsState.fetchedUserDetails(userDetails);
     }
