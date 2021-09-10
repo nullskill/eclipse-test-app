@@ -24,8 +24,6 @@ class PostDetailsScreen extends StatefulWidget {
 }
 
 class _PostDetailsScreenState extends State<PostDetailsScreen> {
-  final _formKey = GlobalKey<FormState>();
-
   @override
   void initState() {
     super.initState();
@@ -38,96 +36,16 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 
   // This function is triggered when the 'Add comment' buttion is pressed
   void _addComment(BuildContext context) {
-    String? name, email, body;
-
     showModalBottomSheet(
       isScrollControlled: true,
       elevation: 5,
       context: context,
       builder: (context) => Padding(
         padding: const EdgeInsets.all(15),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Center(
-                child: Text('Please add your comment:', style: labelStyle),
-              ),
-              TextFormField(
-                initialValue: '',
-                keyboardType: TextInputType.name,
-                decoration: InputDecoration(labelText: 'Name'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your name';
-                  }
-                  return null;
-                },
-                onSaved: (value) => name = value!,
-              ),
-              TextFormField(
-                initialValue: '',
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(labelText: 'Email'),
-                validator: (value) {
-                  if (value!.isEmpty || !_isEmail(value)) {
-                    return 'Please enter a valid email';
-                  }
-                  return null;
-                },
-                onSaved: (value) => email = value!,
-              ),
-              TextFormField(
-                initialValue: '',
-                keyboardType: TextInputType.text,
-                maxLines: 5,
-                decoration: InputDecoration(labelText: 'Comment'),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Please enter your comment';
-                  }
-                  return null;
-                },
-                onSaved: (value) => body = value!,
-              ),
-              sizedBox16,
-              Center(
-                child: ElevatedButton(
-                  onPressed: () async {
-                    final formData = _formKey.currentState!;
-                    if (!formData.validate()) return;
-
-                    formData.save();
-                    BlocProvider.of<AllCommentsBloc>(
-                      context,
-                      listen: false,
-                    ).add(
-                      AllCommentsEvent.sendNewComment(
-                        Comment(
-                          postId: widget.postId,
-                          id: -1,
-                          name: name!,
-                          email: email!,
-                          body: body!,
-                        ),
-                      ),
-                    );
-                    Navigator.pop(context);
-                  },
-                  child: Text('Send'),
-                ),
-              ),
-              sizedBox16,
-            ],
-          ),
-        ),
+        child: _AddCommentForm(postId: widget.postId),
       ),
     );
   }
-
-  bool _isEmail(String input) => EmailValidator.validate(input);
 
   @override
   Widget build(BuildContext context) {
@@ -151,6 +69,111 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _AddCommentForm extends StatefulWidget {
+  final int postId;
+
+  _AddCommentForm({Key? key, required this.postId}) : super(key: key);
+
+  @override
+  _AddCommentFormState createState() => _AddCommentFormState();
+}
+
+class _AddCommentFormState extends State<_AddCommentForm> {
+  static const formTitle = 'Please add your comment:';
+  static const nameWarning = 'Please enter your name';
+  static const emailWarning = 'Please enter a valid email';
+  static const bodyWarning = 'Please enter your comment';
+
+  final _formKey = GlobalKey<FormState>();
+
+  String? name, email, body;
+
+  bool _isEmail(String input) => EmailValidator.validate(input);
+
+  void _onSend(BuildContext context) {
+    final formData = _formKey.currentState!;
+    if (!formData.validate()) return;
+
+    formData.save();
+    BlocProvider.of<AllCommentsBloc>(
+      context,
+      listen: false,
+    ).add(
+      AllCommentsEvent.sendNewComment(
+        Comment(
+          postId: widget.postId,
+          id: -1,
+          name: name!,
+          email: email!,
+          body: body!,
+        ),
+      ),
+    );
+    Navigator.pop(context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Text(formTitle, style: labelStyle),
+          ),
+          TextFormField(
+            initialValue: '',
+            keyboardType: TextInputType.name,
+            decoration: InputDecoration(labelText: 'Name'),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return nameWarning;
+              }
+              return null;
+            },
+            onSaved: (value) => setState(() => name = value!),
+          ),
+          TextFormField(
+            initialValue: '',
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(labelText: 'Email'),
+            validator: (value) {
+              if (value!.isEmpty || !_isEmail(value)) {
+                return emailWarning;
+              }
+              return null;
+            },
+            onSaved: (value) => setState(() => email = value!),
+          ),
+          TextFormField(
+            initialValue: '',
+            keyboardType: TextInputType.text,
+            maxLines: 5,
+            decoration: InputDecoration(labelText: 'Comment'),
+            validator: (value) {
+              if (value!.isEmpty) {
+                return bodyWarning;
+              }
+              return null;
+            },
+            onSaved: (value) => setState(() => body = value!),
+          ),
+          sizedBox16,
+          Center(
+            child: ElevatedButton(
+              onPressed: () => _onSend(context),
+              child: Text('Send'),
+            ),
+          ),
+          sizedBox16,
+        ],
       ),
     );
   }
