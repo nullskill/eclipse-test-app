@@ -63,7 +63,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
               _PostComments(postId: widget.postId),
               ElevatedButton(
                 onPressed: () => _addComment(context),
-                child: Text('Add comment'),
+                child: const Text('Add comment'),
               ),
               sizedBox16,
             ],
@@ -203,7 +203,7 @@ class _UserPost extends StatelessWidget {
         } else if (state is ErrorFetchPostDetailsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );
@@ -272,7 +272,7 @@ class _PostComments extends StatelessWidget {
         } else if (state is ErrorFetchAllCommentsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );

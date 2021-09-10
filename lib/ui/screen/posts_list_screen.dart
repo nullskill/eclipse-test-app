@@ -110,7 +110,7 @@ class _UserPosts extends StatelessWidget {
         } else if (state is ErrorFetchAllPostsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );

@@ -20,8 +20,10 @@ class AlbumDetailsScreen extends StatefulWidget {
 }
 
 class _AlbumDetailsScreen extends State<AlbumDetailsScreen> {
-  final PageController _pageController =
-      PageController(viewportFraction: 1, keepPage: true);
+  final PageController _pageController = PageController(
+    viewportFraction: 1,
+    keepPage: true,
+  );
 
   @override
   void initState() {
@@ -104,7 +106,7 @@ class _AlbumDetailsScreen extends State<AlbumDetailsScreen> {
             } else if (state is ErrorFetchAlbumDetailsState) {
               return Center(child: Text('${state.error}'));
             } else {
-              return Center(child: CircularProgressIndicator());
+              return Center(child: const CircularProgressIndicator());
             }
           },
         ),

@@ -117,7 +117,7 @@ class _UserAlbums extends StatelessWidget {
         } else if (state is ErrorFetchAllAlbumsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );

@@ -20,7 +20,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   final prefs = await SharedPreferences.getInstance();
-  prefs.clear();
 
   runApp(MyApp(prefs: prefs));
 }
@@ -30,6 +29,8 @@ class MyApp extends StatelessWidget {
 
   const MyApp({Key? key, required this.prefs}) : super(key: key);
 
+  // Haven't had enough time to extract all strings as consts in seperate file,
+  // but definitely would in real project
   static const appTitle = 'Eclipse test app';
   static const title = 'User list';
 

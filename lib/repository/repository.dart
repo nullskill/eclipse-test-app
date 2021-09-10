@@ -37,12 +37,12 @@ class Repository {
 
   /// Get all users
   Future<UsersResponse> getUsers() async {
-    try {
-      final usersCache = prefs.getString('users') ?? '';
-      if (usersCache.isNotEmpty) {
-        return UsersResponse.fromJson(jsonDecode(usersCache));
-      }
+    final usersCache = prefs.getString('users') ?? '';
+    if (usersCache.isNotEmpty) {
+      return UsersResponse.fromJson(jsonDecode(usersCache));
+    }
 
+    try {
       final response = await _dio.get(_usersUrl);
       prefs.setString('users', jsonEncode(response.data));
 
@@ -56,12 +56,12 @@ class Repository {
 
   /// Get user details by [id]
   Future<User?> getUserDetails(int id) async {
-    try {
-      final userCache = prefs.getString('user_$id') ?? '';
-      if (userCache.isNotEmpty) {
-        return User.fromJson(jsonDecode(userCache));
-      }
+    final userCache = prefs.getString('user_$id') ?? '';
+    if (userCache.isNotEmpty) {
+      return User.fromJson(jsonDecode(userCache));
+    }
 
+    try {
       final response = await _dio.get('$_usersUrl/$id');
       prefs.setString('user_$id', jsonEncode(response.data));
 
@@ -75,12 +75,12 @@ class Repository {
 
   /// Get all posts by user [id]
   Future<PostsResponse> getUserPosts(int id) async {
-    try {
-      final postsCache = prefs.getString('posts_$id') ?? '';
-      if (postsCache.isNotEmpty) {
-        return PostsResponse.fromJson(jsonDecode(postsCache));
-      }
+    final postsCache = prefs.getString('posts_$id') ?? '';
+    if (postsCache.isNotEmpty) {
+      return PostsResponse.fromJson(jsonDecode(postsCache));
+    }
 
+    try {
       final response = await _dio.get('$_postsUrl/?userId=$id');
       prefs.setString('posts_$id', jsonEncode(response.data));
 
@@ -94,12 +94,12 @@ class Repository {
 
   /// Get all post details by [id]
   Future<Post?> getPostDetails(int id) async {
-    try {
-      final postCache = prefs.getString('post_$id') ?? '';
-      if (postCache.isNotEmpty) {
-        return Post.fromJson(jsonDecode(postCache));
-      }
+    final postCache = prefs.getString('post_$id') ?? '';
+    if (postCache.isNotEmpty) {
+      return Post.fromJson(jsonDecode(postCache));
+    }
 
+    try {
       final response = await _dio.get('$_postsUrl/$id');
       prefs.setString('post_$id', jsonEncode(response.data));
 
@@ -113,12 +113,12 @@ class Repository {
 
   /// Get all comments by post [id]
   Future<CommentsResponse> getPostComments(int id) async {
-    try {
-      final commentsCache = prefs.getString('comments_$id') ?? '';
-      if (commentsCache.isNotEmpty) {
-        return CommentsResponse.fromJson(jsonDecode(commentsCache));
-      }
+    final commentsCache = prefs.getString('comments_$id') ?? '';
+    if (commentsCache.isNotEmpty) {
+      return CommentsResponse.fromJson(jsonDecode(commentsCache));
+    }
 
+    try {
       final response = await _dio.get('$_commentsUrl/?postId=$id');
       prefs.setString('comments_$id', jsonEncode(response.data));
 
@@ -165,12 +165,12 @@ class Repository {
 
   /// Get all albums by user [id]
   Future<AlbumsResponse> getUserAlbums(int id) async {
-    try {
-      final albumsCache = prefs.getString('albums_$id') ?? '';
-      if (albumsCache.isNotEmpty) {
-        return AlbumsResponse.fromJson(jsonDecode(albumsCache));
-      }
+    final albumsCache = prefs.getString('albums_$id') ?? '';
+    if (albumsCache.isNotEmpty) {
+      return AlbumsResponse.fromJson(jsonDecode(albumsCache));
+    }
 
+    try {
       final response = await _dio.get('$_albumsUrl/?userId=$id');
       prefs.setString('albums_$id', jsonEncode(response.data));
 
@@ -184,12 +184,12 @@ class Repository {
 
   /// Get all album details by [id]
   Future<Album?> getAlbumDetails(int id) async {
-    try {
-      final albumCache = prefs.getString('album_$id') ?? '';
-      if (albumCache.isNotEmpty) {
-        return Album.fromJson(jsonDecode(albumCache));
-      }
+    final albumCache = prefs.getString('album_$id') ?? '';
+    if (albumCache.isNotEmpty) {
+      return Album.fromJson(jsonDecode(albumCache));
+    }
 
+    try {
       final response = await _dio.get('$_albumsUrl/$id');
       prefs.setString('album_$id', jsonEncode(response.data));
 
@@ -203,12 +203,12 @@ class Repository {
 
   /// Get all photos by album [id]
   Future<PhotosResponse> getAlbumPhotos(int id) async {
-    try {
-      final photosCache = prefs.getString('photos_$id') ?? '';
-      if (photosCache.isNotEmpty) {
-        return PhotosResponse.fromJson(jsonDecode(photosCache));
-      }
+    final photosCache = prefs.getString('photos_$id') ?? '';
+    if (photosCache.isNotEmpty) {
+      return PhotosResponse.fromJson(jsonDecode(photosCache));
+    }
 
+    try {
       final response = await _dio.get('$_photosUrl/?albumId=$id');
       prefs.setString('photos_$id', jsonEncode(response.data));
 

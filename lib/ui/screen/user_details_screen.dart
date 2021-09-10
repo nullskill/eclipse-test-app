@@ -123,7 +123,7 @@ class _UserInfo extends StatelessWidget {
         } else if (state is ErrorFetchUserDetailsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );
@@ -197,7 +197,7 @@ class _UserPosts extends StatelessWidget {
         } else if (state is ErrorFetchFirstPostsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );
@@ -278,7 +278,7 @@ class _UserAlbums extends StatelessWidget {
         } else if (state is ErrorFetchFirstAlbumsState) {
           return Center(child: Text('${state.error}'));
         } else {
-          return Center(child: CircularProgressIndicator());
+          return Center(child: const CircularProgressIndicator());
         }
       },
     );
