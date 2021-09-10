@@ -119,61 +119,66 @@ class _AddCommentFormState extends State<_AddCommentForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Text(formTitle, style: labelStyle),
+    return Padding(
+      padding: MediaQuery.of(context).viewInsets,
+      child: Form(
+        key: _formKey,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Text(formTitle, style: labelStyle),
+              ),
+              TextFormField(
+                initialValue: '',
+                keyboardType: TextInputType.name,
+                decoration: InputDecoration(labelText: 'Name'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return nameWarning;
+                  }
+                  return null;
+                },
+                onSaved: (value) => setState(() => name = value!),
+              ),
+              TextFormField(
+                initialValue: '',
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(labelText: 'Email'),
+                validator: (value) {
+                  if (value!.isEmpty || !_isEmail(value)) {
+                    return emailWarning;
+                  }
+                  return null;
+                },
+                onSaved: (value) => setState(() => email = value!),
+              ),
+              TextFormField(
+                initialValue: '',
+                keyboardType: TextInputType.text,
+                maxLines: 5,
+                decoration: InputDecoration(labelText: 'Comment'),
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return bodyWarning;
+                  }
+                  return null;
+                },
+                onSaved: (value) => setState(() => body = value!),
+              ),
+              sizedBox16,
+              Center(
+                child: ElevatedButton(
+                  onPressed: () => _onSend(context),
+                  child: Text('Send'),
+                ),
+              ),
+              sizedBox16,
+            ],
           ),
-          TextFormField(
-            initialValue: '',
-            keyboardType: TextInputType.name,
-            decoration: InputDecoration(labelText: 'Name'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return nameWarning;
-              }
-              return null;
-            },
-            onSaved: (value) => setState(() => name = value!),
-          ),
-          TextFormField(
-            initialValue: '',
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(labelText: 'Email'),
-            validator: (value) {
-              if (value!.isEmpty || !_isEmail(value)) {
-                return emailWarning;
-              }
-              return null;
-            },
-            onSaved: (value) => setState(() => email = value!),
-          ),
-          TextFormField(
-            initialValue: '',
-            keyboardType: TextInputType.text,
-            maxLines: 5,
-            decoration: InputDecoration(labelText: 'Comment'),
-            validator: (value) {
-              if (value!.isEmpty) {
-                return bodyWarning;
-              }
-              return null;
-            },
-            onSaved: (value) => setState(() => body = value!),
-          ),
-          sizedBox16,
-          Center(
-            child: ElevatedButton(
-              onPressed: () => _onSend(context),
-              child: Text('Send'),
-            ),
-          ),
-          sizedBox16,
-        ],
+        ),
       ),
     );
   }
