@@ -132,13 +132,18 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: BlocBuilder<UsersBloc, UsersState>(
         builder: (_, state) {
-          if (state is FetchedUsersState) {
-            return Padding(
+          return state.when(
+            initial: () => const SizedBox.shrink(),
+            loadingUsers: () =>
+                Center(child: const CircularProgressIndicator()),
+            errorFetchUsers: (error) =>
+                Center(child: Text('$errorTitle:\n${error}')),
+            fetchedUsers: (users) => Padding(
               padding: const EdgeInsets.all(8),
               child: ListView.builder(
-                itemCount: state.users.length,
+                itemCount: users.length,
                 itemBuilder: (_, index) {
-                  final user = state.users[index];
+                  final user = users[index];
                   return GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -176,12 +181,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 },
               ),
-            );
-          } else if (state is ErrorFetchUsersState) {
-            return Center(child: Text('$errorTitle:\n${state.error}'));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
+            ),
+          );
         },
       ),
     );

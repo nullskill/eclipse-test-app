@@ -77,7 +77,7 @@ class _PostDetailsScreenState extends State<PostDetailsScreen> {
 class _AddCommentForm extends StatefulWidget {
   final int postId;
 
-  _AddCommentForm({Key? key, required this.postId}) : super(key: key);
+  const _AddCommentForm({Key? key, required this.postId}) : super(key: key);
 
   @override
   _AddCommentFormState createState() => _AddCommentFormState();
@@ -191,25 +191,25 @@ class _UserPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PostDetailsBloc, PostDetailsState>(
       builder: (_, state) {
-        if (state is FetchedPostDetailsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingPostDetails: () =>
+              Center(child: const CircularProgressIndicator()),
+          errorFetchPostDetails: (error) => Center(child: Text('${error}')),
+          fetchedPostDetails: (postDetails) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Text('Post:', style: labelStyle),
               ),
               sizedBox16,
-              Text(state.postDetails.title, style: sublabelStyle),
+              Text(postDetails.title, style: sublabelStyle),
               sizedBox8,
-              Text(state.postDetails.body, style: valueStyle),
+              Text(postDetails.body, style: valueStyle),
               sizedBox16,
             ],
-          );
-        } else if (state is ErrorFetchPostDetailsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }
@@ -224,8 +224,13 @@ class _PostComments extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AllCommentsBloc, AllCommentsState>(
       builder: (_, state) {
-        if (state is FetchedAllCommentsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingComments: () =>
+              Center(child: const CircularProgressIndicator()),
+          errorFetchComments: (error) => Center(child: Text('${error}')),
+          errorSendComment: (error) => Center(child: Text('${error}')),
+          fetchedComments: (comments) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               sizedBox16,
@@ -235,7 +240,7 @@ class _PostComments extends StatelessWidget {
                 child: Text('Comments:', style: labelStyle),
               ),
               sizedBox8,
-              for (final comment in state.comments)
+              for (final comment in comments)
                 Card(
                   margin: const EdgeInsets.all(8),
                   elevation: 2,
@@ -273,12 +278,8 @@ class _PostComments extends StatelessWidget {
                   ),
                 ),
             ],
-          );
-        } else if (state is ErrorFetchAllCommentsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }

@@ -139,8 +139,11 @@ class _UserPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FirstPostsBloc, FirstPostsState>(
       builder: (_, state) {
-        if (state is FetchedFirstPostsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingPosts: () => Center(child: const CircularProgressIndicator()),
+          errorFetchPosts: (error) => Center(child: Text('${error}')),
+          fetchedPosts: (posts) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               sizedBox16,
@@ -150,7 +153,7 @@ class _UserPosts extends StatelessWidget {
                 child: Text('Posts:', style: labelStyle),
               ),
               sizedBox8,
-              for (final post in state.posts)
+              for (final post in posts)
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -193,12 +196,8 @@ class _UserPosts extends StatelessWidget {
                   ),
                 ),
             ],
-          );
-        } else if (state is ErrorFetchFirstPostsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }
@@ -218,8 +217,11 @@ class _UserAlbums extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FirstAlbumsBloc, FirstAlbumsState>(
       builder: (_, state) {
-        if (state is FetchedFirstAlbumsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingAlbums: () => Center(child: const CircularProgressIndicator()),
+          errorFetchAlbums: (error) => Center(child: Text('${error}')),
+          fetchedAlbums: (albums) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               sizedBox16,
@@ -229,7 +231,7 @@ class _UserAlbums extends StatelessWidget {
                 child: Text('Albums:', style: labelStyle),
               ),
               sizedBox8,
-              for (final post in state.albums)
+              for (final post in albums)
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -274,12 +276,8 @@ class _UserAlbums extends StatelessWidget {
                   ),
                 ),
             ],
-          );
-        } else if (state is ErrorFetchFirstAlbumsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }

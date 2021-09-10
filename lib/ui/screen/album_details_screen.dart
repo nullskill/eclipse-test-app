@@ -44,70 +44,72 @@ class _AlbumDetailsScreen extends State<AlbumDetailsScreen> {
         padding: const EdgeInsets.all(16),
         child: BlocBuilder<AlbumDetailsBloc, AlbumDetailsState>(
           builder: (_, state) {
-            if (state is FetchedAlbumDetailsState) {
-              final photos = state.albumDetails.photos;
-              return Column(
-                children: [
-                  Center(
-                    child: Text('Album:', style: labelStyle),
-                  ),
-                  sizedBox16,
-                  Text(state.albumDetails.album.title, style: sublabelStyle),
-                  sizedBox8,
-                  SizedBox(
-                    height: 350,
-                    width: double.infinity,
-                    child: PageView.builder(
-                      controller: _pageController,
-                      scrollDirection: Axis.horizontal,
-                      itemCount: photos.length,
-                      itemBuilder: (_, index) {
-                        return Stack(
-                          children: [
-                            SizedBox(
-                              height: 300,
-                              width: double.infinity,
-                              child: DecoratedBox(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: NetworkImage(
-                                      photos[index].url,
+            return state.when(
+              initial: () => const SizedBox.shrink(),
+              loadingAlbumDetails: () =>
+                  Center(child: const CircularProgressIndicator()),
+              errorFetchAlbumDetails: (error) =>
+                  Center(child: Text('${error}')),
+              fetchedAlbumDetails: (albumDetails) {
+                final photos = albumDetails.photos;
+                return Column(
+                  children: [
+                    Center(
+                      child: Text('Album:', style: labelStyle),
+                    ),
+                    sizedBox16,
+                    Text(albumDetails.album.title, style: sublabelStyle),
+                    sizedBox8,
+                    SizedBox(
+                      height: 350,
+                      width: double.infinity,
+                      child: PageView.builder(
+                        controller: _pageController,
+                        scrollDirection: Axis.horizontal,
+                        itemCount: photos.length,
+                        itemBuilder: (_, index) {
+                          return Stack(
+                            children: [
+                              SizedBox(
+                                height: 300,
+                                width: double.infinity,
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.rectangle,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: NetworkImage(
+                                        photos[index].url,
+                                      ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 10,
-                              left: 8,
-                              child: ConstrainedBox(
-                                constraints: BoxConstraints(
-                                  minHeight: 40,
-                                  maxWidth:
-                                      MediaQuery.of(context).size.width - 32,
-                                ),
-                                child: Text(
-                                  photos[index].title,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(),
+                              Positioned(
+                                bottom: 10,
+                                left: 8,
+                                child: ConstrainedBox(
+                                  constraints: BoxConstraints(
+                                    minHeight: 40,
+                                    maxWidth:
+                                        MediaQuery.of(context).size.width - 32,
+                                  ),
+                                  child: Text(
+                                    photos[index].title,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        );
-                      },
+                            ],
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                ],
-              );
-            } else if (state is ErrorFetchAlbumDetailsState) {
-              return Center(child: Text('${state.error}'));
-            } else {
-              return Center(child: const CircularProgressIndicator());
-            }
+                  ],
+                );
+              },
+            );
           },
         ),
       ),

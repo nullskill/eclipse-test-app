@@ -55,15 +55,18 @@ class _UserPosts extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AllPostsBloc, AllPostsState>(
       builder: (_, state) {
-        if (state is FetchedAllPostsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingPosts: () => Center(child: const CircularProgressIndicator()),
+          errorFetchPosts: (error) => Center(child: Text('${error}')),
+          fetchedPosts: (posts) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Text('All Posts:', style: labelStyle),
               ),
               sizedBox8,
-              for (final post in state.posts)
+              for (final post in posts)
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -106,12 +109,8 @@ class _UserPosts extends StatelessWidget {
                   ),
                 ),
             ],
-          );
-        } else if (state is ErrorFetchAllPostsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }

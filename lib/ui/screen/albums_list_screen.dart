@@ -60,15 +60,18 @@ class _UserAlbums extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AllAlbumsBloc, AllAlbumsState>(
       builder: (_, state) {
-        if (state is FetchedAllAlbumsState) {
-          return Column(
+        return state.when(
+          initial: () => const SizedBox.shrink(),
+          loadingAlbums: () => Center(child: const CircularProgressIndicator()),
+          errorFetchAlbums: (error) => Center(child: Text('${error}')),
+          fetchedAlbums: (albums) => Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: Text('All Albums:', style: labelStyle),
               ),
               sizedBox8,
-              for (final album in state.albums)
+              for (final album in albums)
                 GestureDetector(
                   onTap: () {
                     Navigator.push(
@@ -113,12 +116,8 @@ class _UserAlbums extends StatelessWidget {
                   ),
                 ),
             ],
-          );
-        } else if (state is ErrorFetchAllAlbumsState) {
-          return Center(child: Text('${state.error}'));
-        } else {
-          return Center(child: const CircularProgressIndicator());
-        }
+          ),
+        );
       },
     );
   }
