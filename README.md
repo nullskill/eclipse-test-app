@@ -3,7 +3,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project is made as test assignment for the flutter developer position at the <a href="https://eclipse-studio.ru/">Eclipse studio</a>. The app utilizes Rest API from <a href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a>. The app's state management is based on bloc, provider and freezed packages. All the data cache is stored using SharedPreferences.
+This project is made as test assignment for the Flutter developer position at the <a href="https://eclipse-studio.ru/">Eclipse studio</a>. The app utilizes Rest API from <a href="https://jsonplaceholder.typicode.com/">{JSON} Placeholder</a>. The app's state management is based on bloc, provider and freezed packages. All the data cache is stored using SharedPreferences.
 
 ### Demo
 
